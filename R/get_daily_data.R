@@ -13,17 +13,13 @@ get_daily_data <- function(country = c("mw", "zm"), station_id) {
   station_id <- as.character(station_id)
   dfs <- vector("list", length(station_id))
   names(dfs) <- station_id
-  print(getwd())
   for (i in seq_along(station_id)) {
     f <- paste0(country, "/", "data", "/", station_id[i], ".rds")
-    print(f)
     if (file.exists(f)) {
       dfs[[i]] <- readRDS(f)
     } else {
-      # Un-comment once update_daily_data() written
-      # f <- update_daily_data(country, station_id[i])
-      # dfs[[i]] <- readRDS(f)
-      stop("data not found locally")
+      f <- update_daily_data(country, station_id[i])
+      dfs[[i]] <- readRDS(f)
     }
   }
   if (length(station_id) > 1) {
