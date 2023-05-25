@@ -1,4 +1,3 @@
-# TODO: renamed as run_daily_data
 #' Get Daily Data
 #'
 #' @param country 

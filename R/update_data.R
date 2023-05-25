@@ -1,5 +1,4 @@
-# TODO: change to get_data
-# TODO: save_to should only be there for the forecast data 
+# TODO: remove this function. We have renamed it as get_data.R now 
 update_data <- function(country, filename, save_to) {
   bucket <- get_bucket_name(country)
   if (is.null(save_to)){
