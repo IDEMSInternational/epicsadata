@@ -1,4 +1,3 @@
-# TODO: renamed as run_daily_data
 #' Get Daily Data
 #'
 #' @param country 
@@ -8,7 +7,7 @@
 #' @export
 #'
 #' @examples
-run_daily_data <- function(country = c("mw", "zm"), station_id) {
+get_daily_data <- function(country = c("mw", "zm"), station_id) {
   if (length(country) > 1) stop("'country' must be of length 1")
   country <- match.arg(country)
   station_id <- as.character(station_id)
@@ -20,7 +19,7 @@ run_daily_data <- function(country = c("mw", "zm"), station_id) {
       dfs[[i]] <- readRDS(f)
     } else {
       f <- update_daily_data(country, station_id[i])
-      dfs[[i]] <- readRDS(f)
+      dfs[[i]] <- f#saveRDS(o, file = f)
     }
   }
   if (length(station_id) > 1) {
