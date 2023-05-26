@@ -18,8 +18,13 @@
 get_data <- function(country, filename, save_to = NULL) {
   bucket <- get_bucket_name(country)
   if (is.null(save_to)){
-    googleCloudStorageR::gcs_get_object(object_name = filename, bucket = bucket,
-                                        parseFunction = googleCloudStorageR::gcs_parse_rds)
+    if (substr(filename, nchar(filename)-4+1, nchar(filename)) == ".rds"){
+      googleCloudStorageR::gcs_get_object(object_name = filename, bucket = bucket,
+                                          parseFunction = googleCloudStorageR::gcs_parse_rds)
+    } else {
+      googleCloudStorageR::gcs_get_object(object_name = filename, bucket = bucket,
+                                          parseFunction = googleCloudStorageR::gcs_parse_download) 
+    }
   } else {
     googleCloudStorageR::gcs_get_object(object_name = filename, bucket = bucket,
                                         saveToDisk = save_to) 
