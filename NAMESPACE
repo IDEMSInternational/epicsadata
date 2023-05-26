@@ -2,6 +2,8 @@
 
 export("%>%")
 export(gcs_auth_file)
-export(get_daily_data)
+export(get_data)
+export(run_daily_data)
 export(station_metadata)
+export(update_daily_data)
 importFrom(magrittr,"%>%")
