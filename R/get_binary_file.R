@@ -14,7 +14,7 @@
 #' @return This function does not return any value explicitly. It gets the PDF/JPEG data for the specified station in the specified country.
 #' @export
 #'
-#' @examples # update_pdf_data("zm", "16", "pdf")
+#' @examples # get_binary_file("zm", "16", "pdf")
 get_binary_file <- function(country = c("mz", "zm"), station_id, type = c("pdf", "jpeg")) {
   type <- match.arg(type)
   filename <- paste0(type, "/", station_id, ".", type)

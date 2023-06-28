@@ -25,5 +25,5 @@ The \code{station_id} argument is a character string that specifies the ID of th
 The function uses the invisible function to suppress the output of the \code{get_data} function, ensuring that the data retrieval process is not visible in the console.
 }
 \examples{
-# update_pdf_data("zm", "16", "pdf")
+# get_binary_file("zm", "16", "pdf")
 }
