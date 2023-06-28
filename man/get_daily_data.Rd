@@ -7,10 +7,16 @@
 get_daily_data(country = c("mw", "zm"), station_id)
 }
 \arguments{
-\item{country}{}
+\item{country}{A character vector specifying the country or countries from which to get the data. Options are \code{"mz"} and \code{"zm"}.}
 
-\item{station_id}{}
+\item{station_id}{A character string specifying the ID of the station for which to get the daily data.}
+}
+\value{
+A data frame containing the daily data for the specified station and country.
 }
 \description{
 Get Daily Data
+}
+\examples{
+#
 }

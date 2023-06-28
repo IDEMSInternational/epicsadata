@@ -1,12 +1,12 @@
 #' Get Daily Data
 #'
-#' @param country 
-#' @param station_id 
+#' @param country A character vector specifying the country or countries from which to get the definitions data. Options are `"mz"` and `"zm"`.
+#' @param station_id A character string specifying the ID of the station for which to get the definitions data.
 #'
-#' @return
+#' @return A data frame containing daily data based on the station ID.
 #' @export
 #'
-#' @examples
+#' @examples #
 get_definitions_data <- function(country = c("mw", "zm"), station_id) {
   if (length(country) > 1) stop("'country' must be of length 1")
   country <- match.arg(country)

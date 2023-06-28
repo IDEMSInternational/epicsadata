@@ -7,8 +7,14 @@
 station_metadata(country = c("mw", "zm"))
 }
 \arguments{
-\item{country}{}
+\item{country}{A character vector specifying the country or countries from which to get the metadata. Options are \code{"mz"} and \code{"zm"}.}
+}
+\value{
+This function gets the metadata for the specified station in the specified country.
 }
 \description{
 Get Station Metadata
+}
+\examples{
+#todo
 }
