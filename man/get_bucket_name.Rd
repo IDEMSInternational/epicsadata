@@ -7,8 +7,14 @@
 get_bucket_name(country = c("mw", "zm"))
 }
 \arguments{
-\item{country}{}
+\item{country}{A character vector specifying the country or countries from which to update the data. Options are \code{"mz"} and \code{"zm"}.}
+}
+\value{
+Returns the name of the bucket for the Malawi or Zambia data.
 }
 \description{
 Get Bucket Name
+}
+\examples{
+get_bucket_name("mw")
 }

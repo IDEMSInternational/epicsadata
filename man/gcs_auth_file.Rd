@@ -7,8 +7,19 @@
 gcs_auth_file(filename)
 }
 \arguments{
-\item{filename}{}
+\item{filename}{The path to the JSON key file for GCS authentication.}
+}
+\value{
+None
 }
 \description{
-GCS Auth with json file
+This function authenticates the user for Google Cloud Storage (GCS) using a JSON key file.
+}
+\examples{
+# gcs_auth_file("path/to/key.json")
+
+}
+\references{
+For more information on GCS authentication, refer to the official documentation:
+https://cloud.google.com/storage/docs/reference/libraries#client-libraries-usage-r
 }
