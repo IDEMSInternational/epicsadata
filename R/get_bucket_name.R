@@ -4,7 +4,7 @@
 #'
 #' @return Returns the name of the bucket for the Malawi or Zambia data.
 #'
-#' @examples get_bucket_name("mw")
+#' @examples #get_bucket_name("mw")
 get_bucket_name <- function(country = c("mw", "zm")) {
   if (length(country) > 1) stop("'country' must be length 1.")
   country <- match.arg(country)

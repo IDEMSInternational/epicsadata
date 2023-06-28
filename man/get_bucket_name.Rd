@@ -16,5 +16,5 @@ Returns the name of the bucket for the Malawi or Zambia data.
 Get Bucket Name
 }
 \examples{
-get_bucket_name("mw")
+#get_bucket_name("mw")
 }
