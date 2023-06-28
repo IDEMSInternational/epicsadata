@@ -3,6 +3,7 @@
 export("%>%")
 export(data_definitions)
 export(gcs_auth_file)
+export(get_binary_file)
 export(get_daily_data)
 export(get_data)
 export(get_definitions_data)
