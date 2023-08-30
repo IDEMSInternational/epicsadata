@@ -32,11 +32,11 @@ all_station_metadata <- function(country = c("zm", "mw"), format = c("wide", "lo
   if (format == "wide"){
     return(wide_df)
   } else {
-    long_df <- wide_df %>% pivot_longer(cols = !colnames(b), names_to = "definition", values_to = "value")
+    long_df <- wide_df %>% tidyr::pivot_longer(cols = !colnames(b), names_to = "definition", values_to = "value")
     if(format == "long"){
       return(long_df)
     } else {
-      nested_df <- long_df %>% nest(.by = colnames(b), data = c(definition, value))
+      nested_df <- long_df %>% tidyr::nest(.by = colnames(b), data = c(definition, value))
       return(nested_df)
     }
   }

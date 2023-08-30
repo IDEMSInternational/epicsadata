@@ -15,4 +15,6 @@ Imports:
     dplyr,
     googleCloudStorageR,
     jsonlite,
-    magrittr
+    magrittr,
+    purrr,
+    tidyr
