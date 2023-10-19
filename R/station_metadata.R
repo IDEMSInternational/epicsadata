@@ -15,7 +15,7 @@ station_metadata <- function(country = c("mw", "zm")) {
     metadata <- readRDS(f)
   } else {
     f <- update_metadata(country)
-    metadata <- readRDS(f)
+    metadata <- f#readRDS(f)
   }
   return(metadata)
 }
