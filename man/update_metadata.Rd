@@ -4,7 +4,7 @@
 \alias{update_metadata}
 \title{Update Station Metadata}
 \usage{
-update_metadata(country = c("mz", "zm"))
+update_metadata(country = c("mw", "zm"))
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to update the metadata. Options are \code{"mz"} and \code{"zm"}.}
