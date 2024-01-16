@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_definitions_data.R
 \name{get_definitions_data}
 \alias{get_definitions_data}
-\title{Get Daily Data}
+\title{Get Daily Definitions Data}
 \usage{
 get_definitions_data(country = c("mw", "zm"), station_id)
 }
@@ -15,8 +15,11 @@ get_definitions_data(country = c("mw", "zm"), station_id)
 A data frame containing daily data based on the station ID.
 }
 \description{
-Get Daily Data
+This function retrieves definitions data for weather stations from a Google Cloud Storage (GCS) bucket. It includes timestamp handling to ensure that the most recent definitions file is imported.
 }
 \examples{
-#
+# todo
+}
+\seealso{
+\code{update_definitions_data} for updating definitions files.
 }
