@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples #todo
-update_metadata <- function(country = c("mz", "zm")) {
+update_metadata <- function(country = c("mw", "zm")) {
   filename <- paste0("metadata", ".rds")
   saveto <- paste0(country, "/", filename)
   invisible(get_data(country = country,  filename = filename))

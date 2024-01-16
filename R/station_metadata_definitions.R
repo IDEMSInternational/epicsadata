@@ -11,14 +11,14 @@
 #'
 #' @examples
 #' # Retrieve and process station metadata for country "zm" in wide format
-#' #all_station_metadata(country = "zm", format = "wide")
+#' #station_metadata_definitions(country = "zm", format = "wide")
 #'
 #' # Retrieve and process station metadata for countries "zm" and "mw" in long format
-#' #all_station_metadata(country = c("zm", "mw"), format = "long")
+#' #station_metadata_definitions(country = c("zm", "mw"), format = "long")
 #'
 #' # Retrieve and process station metadata for country "zm" in nested format
-#' #all_station_metadata(country = "zm", format = "nested")
-all_station_metadata <- function(country = c("zm", "mw"), format = c("wide", "long", "nested")){
+#' #station_metadata_definitions(country = "zm", format = "nested")
+station_metadata_definitions <- function(country = c("zm", "mw"), format = c("wide", "long", "nested")){
   country <- match.arg(country)
   format <- match.arg(format)
   station_data <- station_metadata(country = "zm")
