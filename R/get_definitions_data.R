@@ -32,7 +32,7 @@ get_definitions_data <- function(country = c("mw", "zm"), station_id) {
   #     dfs[[i]] <- f #jsonlite::write_json(f)
   #   }
   # }
-  bucket_name <- get_bucket_name(country)
+  bucket_name <- epicsadata:::get_bucket_name(country)
   for (i in seq_along(station_id)) {
     # List all files in the "definitions" directory for the station
     files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name,
@@ -52,9 +52,9 @@ get_definitions_data <- function(country = c("mw", "zm"), station_id) {
       
       # Find the index of the most recent timestamp
       most_recent_index <- which.max(timestamps)
-      
       # Get the most recent JSON file
       json_files <- json_files[most_recent_index]
+      station_id[i] <- stringr::str_remove(stringr::str_remove(json_files, "definitions/"), ".json")
     }
     f <- json_files
     if (file.exists(f)) {
