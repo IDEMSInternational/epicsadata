@@ -4,17 +4,36 @@
 \alias{data_definitions}
 \title{Get Data Column Names}
 \usage{
-data_definitions(station_id)
+data_definitions(data_names, rename_vars = FALSE, exact_match = TRUE)
 }
 \arguments{
-\item{station_id}{The ID of the station.}
+\item{data_names}{A character vector containing the variable names in the dataset.}
+
+\item{rename_vars}{Logical value indicating whether to rename variables to their
+corresponding standard names. If \code{TRUE}, the function returns a list of renamed
+variables; if \code{FALSE}, it returns a list of mappings from variations to standard names.}
+
+\item{exact_match}{Logical value indicating whether to perform an exact match for variable
+name variations or not. If \code{TRUE}, it matches only exact variable names; if \code{FALSE}, it
+performs a partial match.}
 }
 \value{
-A list of data definitions based on the station ID.
+A list of standard variable names or a list of mappings from variations to
+standard names, depending on the value of \code{rename_vars}.
 }
 \description{
-Get Data Column Names
+This function takes a vector of variable names and standardises them by mapping
+various variations of variable names to their corresponding standard names.
 }
 \examples{
-# todo
+# Example 1: Redefine variables without renaming
+data_definitions(c("station_id", "station_", "date", "year", "month",
+                       "day", "doy", "rain", "tmin", "tmax"), 
+                       rename_vars = FALSE, exact_match = FALSE)
+
+# Example 2: Redefine variables with renaming
+data_definitions(c("date", "year", "month",
+                       "day", "doy", "rain", "minimum_temperature", "max_temp"), 
+                       rename_vars = TRUE, exact_match = FALSE)
+
 }
