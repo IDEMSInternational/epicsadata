@@ -34,11 +34,12 @@ data_definitions <- function(data_names,
   
   # Define standard variable names and their corresponding variations ---------------------------------
   # standard variable names
-  variable_names <- c("station", "year", "month", "doy", "day", "rain", "tmax", "tmin")
+  variable_names <- c("station", "date", "year", "month", "doy", "day", "rain", "tmax", "tmin")
   
   # different accepted variations
   variations <- list(
     station = c("station_name", "name", "station"),
+    date = c("date", "Date"),
     year = c("year"),
     month = c("month_abbr", "month"),
     doy = c("DOY", "doy_366", "doy"),
