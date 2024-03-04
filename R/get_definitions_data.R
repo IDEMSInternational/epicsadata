@@ -47,16 +47,9 @@ get_definitions_data <- function(country = c("mw", "zm"), station_id) {
     # Check if multiple json files found. If so, take hte most recent one.
     if (length(json_files) > 1){
       # Extract timestamps from file names
-      timestamps <- gsub(paste0(".*", station_id[i], "([0-9]+)\\.json$"), "\\1", json_files)
-      timestamps <- suppressWarnings(as.numeric(timestamps))
-      
-      # Find the index of the most recent timestamp
-      most_recent_index <- which.max(timestamps)
-      # Get the most recent JSON file
-      json_files <- json_files[most_recent_index]
-      station_id[i] <- stringr::str_remove(stringr::str_remove(json_files, "definitions/"), ".json")
+      station_id[i] <- epicsadata:::extract_most_recent_json(json_files)
     }
-    f <- json_files
+    f <- paste0("definitions/", station_id[i], ".json")
     if (file.exists(f)) {
       dfs[[i]] <- jsonlite::read_json(f)
     } else {
