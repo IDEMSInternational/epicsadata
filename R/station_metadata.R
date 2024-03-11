@@ -5,7 +5,7 @@
 #' @param country A character vector specifying the country or countries from which to get the metadata. Options include "zm" (Zambia) and "mz" (Mozambique).
 #' @param station_id A character vector specifying the station IDs to filter by. If provided, only metadata for the specified station IDs will be returned.
 #' @param include_definitions A logical value indicating whether to include definitions data. If `TRUE`, additional information about station definitions will be included in the output.
-#' @param format A character vector specifying the format of the output. Options are `"wide"` (default), `"long"`, or `"nested"`.
+#' @param format A character vector specifying the format of the output. Options are `"wide"` (default), `"long"`, `"nested"`, or `"list"`.
 #' @return If `include_definitions` is FALSE, the function returns a data frame with metadata for the specified stations. If `include_definitions` is `TRUE`, it returns a data frame with both metadata and station definitions.
 #' @export
 #'
@@ -18,7 +18,7 @@
 #' @importFrom purrr map list_rbind
 #' @importFrom dplyr full_join filter mutate
 #' @importFrom tidyr pivot_longer nest
-station_metadata <- function(country = NULL, station_id = NULL, include_definitions = FALSE, format = c("wide", "long", "nested")){
+station_metadata <- function(country = NULL, station_id = NULL, include_definitions = FALSE, format = c("wide", "long", "nested", "list")){
   format <- match.arg(format)
   
   # if no country is given, then no station_id can be given
@@ -62,31 +62,10 @@ station_metadata <- function(country = NULL, station_id = NULL, include_definiti
   if (!include_definitions) return(station_data)
   
   # if include definitions then run the following -
-  process_data <- function(station_data, format){
-    definitions_data <- purrr::map(.x = station_data$station_id,
-                                   .f = ~ data.frame(station_id = .x, t(unlist(get_definitions_data(country = "zm", .x)))))
-    definitions_data <- purrr::list_rbind(definitions_data)
-    
-    #c("station_id", "station_name", "latitude", "longitude", "elevation", "district", "country_code") 
-    wide_df <- dplyr::full_join(station_data, definitions_data)
-    
-    if (format == "wide"){
-      return(wide_df)
-    } else {
-      long_df <- wide_df %>% tidyr::pivot_longer(cols = !colnames(station_data), names_to = "definition", values_to = "value")
-      if(format == "long"){
-        return(long_df)
-      } else {
-        nested_df <- long_df %>% tidyr::nest(.by = colnames(station_data), data = c(definition, value))
-        return(nested_df)
-      }
-    }
-  }
-  
-  if (is.data.frame(station_data)){
-    station_data <- process_data(station_data, format = format)
-  } else {
-    station_data <- purrr::map(.x = station_data, .f = ~process_data(.x, format = format))
-  }
+#  if (is.data.frame(station_data)){
+    station_data <- station_metadata_definitions(country, station_id, format = format)
+  # } else {
+  #   station_data <- purrr::map(.x = station_data, .f = ~station_metadata_definitions(.x, format = format))
+  # }
   return(station_data) 
 }
