@@ -17,6 +17,6 @@
 #'
 #' @examples # todo
 update_summaries_data <- function (country = c("mz", "zm"), station_id, summary){
-  filename <- paste0("summaries", "/", summary, "_", station_id[i], ".rds")
+  filename <- paste0("summaries", "/", summary, "_", station_id, ".rds")
   invisible(get_data(country = country, filename = filename))
 }
