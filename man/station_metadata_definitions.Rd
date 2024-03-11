@@ -6,16 +6,17 @@
 \usage{
 station_metadata_definitions(
   country = c("zm", "mw"),
-  format = c("wide", "long", "nested")
+  station_id,
+  format = c("wide", "long", "nested", "list")
 )
 }
 \arguments{
 \item{country}{A character vector specifying the country code for which station metadata should be retrieved and processed.}
 
-\item{format}{A character vector indicating the desired format of the processed data. It can be "wide", "long", or "nested".}
+\item{format}{A character vector indicating the desired format of the processed data. It can be "wide", "long", "nested", or "list".}
 }
 \value{
-Depending on the specified format, the function returns the processed station metadata in either wide, long, or nested format.
+Depending on the specified format, the function returns the processed station metadata in either wide, long, nested, or list format.
 }
 \description{
 This function retrieves and processes station metadata for the specified country and format. The station metadata includes information about station IDs and their associated definitions.

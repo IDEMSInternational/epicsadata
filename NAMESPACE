@@ -3,6 +3,7 @@
 export("%>%")
 export(add_data_to_bucket)
 export(add_definitions_to_bucket)
+export(add_summaries_to_bucket)
 export(data_definitions)
 export(gcs_auth_file)
 export(get_binary_file)
