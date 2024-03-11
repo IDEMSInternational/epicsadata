@@ -17,33 +17,26 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
   names(dfs) <- station_id
   bucket_name <- epicsadata:::get_bucket_name(country)
   for (i in seq_along(station_id)) {
-    f <- paste0(country, "/", "summaries", "/", summary, "_", station_id[i], ".rds")
     objects_in_space <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name, prefix = paste0("summaries/", summary, "_", station_id[i], "."), versions = TRUE)
     
-    #   # TODO: fix up for rds_files > 1 (e.g., if several summary files)
-    #   files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name, 
-    #                                                  prefix = paste0("summaries/", summary, "_", station_id[i], "."), versions = TRUE)
-    #   if (nrow(files) == 0) {
-    #     stop("No files found. Check country and station_id")
-    #   }
-    #   files <- files %>% dplyr::filter(grepl("\\.rds$", name))
-    #   rds_files <- files$name
-    #   
-    #   if (length(rds_files) > 1) {
-    #     timestamps <- gsub(paste0(".*", station_id[i], 
-    #                               "([0-9]+)\\.rds$"), "\\1", rds_files)
-    #     timestamps <- suppressWarnings(as.numeric(timestamps))
-    #     most_recent_index <- which.max(timestamps)
-    #     rds_files <- rds_files[most_recent_index]
-    #     station_id[i] <- stringr::str_remove(stringr::str_remove(rds_files, "summaries/"), ".rds")
-    #   }
     if (nrow(objects_in_space) == 0){
       dfs[[i]] <- objects_in_space
     } else {
+      #   for rds_files > 1 (e.g., if several summary files)
+      rds_files <- objects_in_space$name
+      
+      if (length(rds_files) > 1) {
+        timestamps <- gsub(".*\\.(\\d+)\\.rds", "\\1", rds_files)
+        timestamps <- suppressWarnings(as.numeric(timestamps))
+        most_recent_index <- which.max(timestamps)
+        rds_files <- rds_files[most_recent_index]
+        station_id[i] <- stringr::str_remove(stringr::str_remove(rds_files, paste0("summaries/", summary, "_")), ".rds")
+      }
+      f <- paste0(country, "/", rds_files)
       if (file.exists(f)) {
         dfs[[i]] <- readRDS(f)
       } else {
-        f <- update_summaries_data(country, station_id[i], summary)
+        f <- epicsadata:::update_summaries_data(country, station_id[i], summary)
         dfs[[i]] <- f
       }
     }
