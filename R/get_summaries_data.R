@@ -4,7 +4,7 @@
 #' @param station_id A character string specifying the ID of the station for which to get the summary data.
 #' @param summary A character string specifying the summary to retrieve.
 #'
-#' @return A data frame containing the summary data for the specified station and country.
+#' @return A list of data frames containing the summary data for the specified stations and country.
 #' @export
 #'
 #' @examples #
@@ -18,6 +18,7 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
   bucket_name <- epicsadata:::get_bucket_name(country)
   for (i in seq_along(station_id)) {
     f <- paste0(country, "/", "summaries", "/", summary, "_", station_id[i], ".rds")
+    objects_in_space <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name, prefix = paste0("summaries/", summary, "_", station_id[i], "."), versions = TRUE)
     
     #   # TODO: fix up for rds_files > 1 (e.g., if several summary files)
     #   files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name, 
@@ -36,15 +37,16 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
     #     rds_files <- rds_files[most_recent_index]
     #     station_id[i] <- stringr::str_remove(stringr::str_remove(rds_files, "summaries/"), ".rds")
     #   }
-    
-    if (file.exists(f)) {
-      dfs[[i]] <- readRDS(f)
-    }
-    else {
-      f <- update_summaries_data(country, station_id[i], summary)
-      dfs[[i]] <- f
+    if (nrow(objects_in_space) == 0){
+      dfs[[i]] <- objects_in_space
+    } else {
+      if (file.exists(f)) {
+        dfs[[i]] <- readRDS(f)
+      } else {
+        f <- update_summaries_data(country, station_id[i], summary)
+        dfs[[i]] <- f
+      }
     }
   }
-  station_data <- dfs[[1]]
-  return(station_data)
+  return(dfs[[i]])
 }

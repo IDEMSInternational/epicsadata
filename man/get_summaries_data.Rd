@@ -14,7 +14,7 @@ get_summaries_data(country = c("mw", "zm"), station_id, summary)
 \item{summary}{A character string specifying the summary to retrieve.}
 }
 \value{
-A data frame containing the summary data for the specified station and country.
+A list of data frames containing the summary data for the specified stations and country.
 }
 \description{
 Get Summaries Data
