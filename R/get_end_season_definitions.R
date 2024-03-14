@@ -4,7 +4,6 @@
 #'
 #' @param end_season The end season data.
 #' @return A JSON representation of end season definitions.
-#' @export
 #' @examples
 #' # Example usage:
 #' #get_end_season_definitions(end_season)
