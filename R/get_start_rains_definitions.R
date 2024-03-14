@@ -4,7 +4,7 @@
 #'
 #' @param start_rains The start rains data.
 #' @return A JSON representation of start rains definitions.
-#' @export
+#'
 #' @examples
 #' # Example usage:
 #' #get_start_rains_definitions(start_rains)

@@ -5,7 +5,7 @@
 #' @param annual_rain The annual rain data.
 #' @param ghana_defs The Ghana definitions.
 #' @return A JSON representation of annual rain definitions.
-#' @export
+#' 
 #' @examples
 #' # Example usage:
 #' #get_annual_rain_definitions(annual_rain, ghana_defs)

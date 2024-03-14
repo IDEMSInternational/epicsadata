@@ -11,7 +11,7 @@
 #' @examples
 #' # Example usage:
 #' #get_annual_summaries_definitions("data_name", by_definitions_list, data_definitions_list)
-get_annual_summaries_definitions <- function(data_name, by_definitions_list, data_definitions_list){
+build_annual_summaries_definitions <- function(data_name, by_definitions_list, data_definitions_list){
   
   start_of_rains <- get_start_rains_definitions(by_definitions_list$start_rain)
   end_rains <- get_end_rains_definitions(by_definitions_list$end_rains)
