@@ -13,6 +13,8 @@ station_metadata_definitions(
 \arguments{
 \item{country}{A character vector specifying the country code for which station metadata should be retrieved and processed.}
 
+\item{station_id}{A character vector specifying the station ID(s) for the given country.}
+
 \item{format}{A character vector indicating the desired format of the processed data. It can be "wide", "long", "nested", or "list".}
 }
 \value{
