@@ -3,7 +3,7 @@
 #' Retrieves start rains definitions.
 #'
 #' @param start_rains The start rains data.
-#' @return A JSON representation of start rains definitions.
+#' @return A list of start of rains definitions
 #'
 #' @examples
 #' # Example usage:

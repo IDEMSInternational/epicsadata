@@ -9,8 +9,8 @@ get_temperature_summary_definitions(
   tmax = data_book$get_climatic_column_name(data_name, "temp_max"),
   year = data_book$get_climatic_column_name(data_name, "year"),
   month = data_book$get_climatic_column_name(data_name, "month"),
-  by_definition_list = data_defs,
-  by_definition_2_list = NULL
+  data_by_year,
+  data_by_year_month = NULL
 )
 }
 \arguments{
@@ -22,9 +22,9 @@ get_temperature_summary_definitions(
 
 \item{month}{Character vector specifying the month.}
 
-\item{by_definition_list}{A list of temperature summaries by definition.}
+\item{data_by_year}{A list of temperature summaries by definition (e.g., year).}
 
-\item{by_definition_2_list}{An optional second list of temperature summaries by definition.}
+\item{data_by_year_month}{An optional second list of temperature summaries by definition (e.g., year and month).}
 }
 \value{
 A list containing temperature summary definitions.

@@ -4,21 +4,17 @@
 \alias{build_annual_summaries_definitions}
 \title{Get annual summaries definitions}
 \usage{
-build_annual_summaries_definitions(
-  data_name,
-  by_definitions_list,
-  data_definitions_list
-)
+build_annual_summaries_definitions(data_name, data_by_year, data)
 }
 \arguments{
 \item{data_name}{The name of the data.}
 
-\item{by_definitions_list}{A list containing definitions for start of rains, end of rains, end of season, and seasonal length.}
+\item{data_by_year}{A list containing definitions for start of rains, end of rains, end of season, and seasonal length.}
 
-\item{data_definitions_list}{A list containing data definitions.}
+\item{data}{A list containing data definitions.}
 }
 \value{
-A JSON representation of annual summaries definitions.
+A list of annual summaries definitions.
 }
 \description{
 Retrieves annual summaries definitions including start of rains, end of rains, end of season, seasonal length,
@@ -26,5 +22,5 @@ and annual rainfall summaries.
 }
 \examples{
 # Example usage:
-#get_annual_summaries_definitions("data_name", by_definitions_list, data_definitions_list)
+#get_annual_summaries_definitions("data_name", data_by_year, data)
 }

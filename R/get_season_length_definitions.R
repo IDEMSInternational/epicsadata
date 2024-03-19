@@ -3,7 +3,7 @@
 #' Retrieves season length definitions.
 #'
 #' @param length The season length data.
-#' @return A JSON representation of season length definitions.
+#' @return A list representation of season length definitions.
 #' @examples
 #' # Example usage:
 #' #get_season_length_definitions(length)

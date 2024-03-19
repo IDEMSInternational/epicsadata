@@ -10,7 +10,7 @@ get_season_length_definitions(length)
 \item{length}{The season length data.}
 }
 \value{
-A JSON representation of season length definitions.
+A list representation of season length definitions.
 }
 \description{
 Retrieves season length definitions.

@@ -10,7 +10,7 @@ get_end_season_definitions(end_season)
 \item{end_season}{The end season data.}
 }
 \value{
-A JSON representation of end season definitions.
+A list representation of end season definitions.
 }
 \description{
 Retrieves end season definitions.

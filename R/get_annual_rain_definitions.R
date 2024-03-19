@@ -4,14 +4,14 @@
 #'
 #' @param annual_rain The annual rain data.
 #' @param ghana_defs The Ghana definitions.
-#' @return A JSON representation of annual rain definitions.
+#' @return A list representation of annual rain definitions.
 #' 
 #' @examples
 #' # Example usage:
 #' #get_annual_rain_definitions(annual_rain, ghana_defs)
 #' 
 #' # In Progress.
-get_annual_rain_definitions <- function(sum_rain = NULL, n_rain_def = NULL, data_definition){
+get_annual_rain_definitions <- function(sum_rain = NULL, n_rain_def = NULL, data){
   data_list <- list()
   data_list[["annual_rain"]] <- list()
   if (is.null(sum_rain) & is.null(n_rain_def)) {
@@ -26,7 +26,7 @@ get_annual_rain_definitions <- function(sum_rain = NULL, n_rain_def = NULL, data
   
   if (!is.null(n_rain_def)){
     n_rain <- "TRUE"
-    rain_day <- extract_value(data_definition$count$rain_day[[2]], " >= ", FALSE)
+    rain_day <- extract_value(data$count$rain_day[[2]], " >= ", FALSE)
   } else {
     n_rain <- "FALSE"    
   }

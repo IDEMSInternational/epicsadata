@@ -10,7 +10,7 @@ get_end_rains_definitions(end_rains)
 \item{end_rains}{The end rains data.}
 }
 \value{
-A JSON representation of end rains definitions.
+A list representation of end rains definitions.
 }
 \description{
 Retrieves end rains definitions.
