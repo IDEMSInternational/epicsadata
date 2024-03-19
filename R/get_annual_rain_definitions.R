@@ -2,8 +2,9 @@
 #'
 #' Retrieves annual rain definitions.
 #'
-#' @param annual_rain The annual rain data.
-#' @param ghana_defs The Ghana definitions.
+#' @param sum_rain The annual rain data.
+#' @param n_rain_def The definitions for the number of rainy days.
+#' @param data The data set to use.
 #' @return A list representation of annual rain definitions.
 #' 
 #' @examples

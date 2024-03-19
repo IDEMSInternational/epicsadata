@@ -7,9 +7,11 @@
 get_annual_rain_definitions(sum_rain = NULL, n_rain_def = NULL, data)
 }
 \arguments{
-\item{annual_rain}{The annual rain data.}
+\item{sum_rain}{The annual rain data.}
 
-\item{ghana_defs}{The Ghana definitions.}
+\item{n_rain_def}{The definitions for the number of rainy days.}
+
+\item{data}{The data set to use.}
 }
 \value{
 A list representation of annual rain definitions.

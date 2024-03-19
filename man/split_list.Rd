@@ -19,6 +19,6 @@ and splits each element into an identifier and its corresponding numeric value. 
 then stored in a list with a dynamically generated name based on its index.
 }
 \examples{
-parameter <- c("A1=100", "A2=200", "A3=150")
-split_list(parameter)
+#parameter <- c("A1=100", "A2=200", "A3=150")
+#split_list(parameter)
 }

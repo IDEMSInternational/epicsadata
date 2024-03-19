@@ -17,4 +17,5 @@ Imports:
     jsonlite,
     magrittr,
     purrr,
+    stringr,
     tidyr
