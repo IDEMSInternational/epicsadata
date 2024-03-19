@@ -8,8 +8,8 @@ get_temp_summaries(
   temp_summary_name,
   year,
   month,
-  by_definition_list,
-  by_definition_2_list = NULL
+  data_by_year,
+  data_by_year_month = NULL
 )
 }
 \arguments{
@@ -19,9 +19,9 @@ get_temp_summaries(
 
 \item{month}{Numeric vector specifying the month.}
 
-\item{by_definition_list}{A list of temperature summaries by definition.}
+\item{data_by_year}{A list of temperature summaries by definition (e.g., year).}
 
-\item{by_definition_2_list}{An optional second list of temperature summaries by definition.}
+\item{data_by_year_month}{An optional second list of temperature summaries by definition (e.g., year and month).}
 }
 \value{
 A list containing temperature summary information.
@@ -31,5 +31,5 @@ Retrieves temperature summaries based on provided parameters.
 }
 \examples{
 # Example usage:
-#get_temp_summaries("summary_name", year = 2023, month = 5, by_definition_list = my_definition_list)
+#get_temp_summaries("summary_name", year = 2023, month = 5, data_by_year = my_definition_list)
 }

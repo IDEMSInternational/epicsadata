@@ -5,18 +5,18 @@
 #' @param temp_summary_name Character vector specifying the name of the temperature summary.
 #' @param year Numeric vector specifying the year.
 #' @param month Numeric vector specifying the month.
-#' @param by_definition_list A list of temperature summaries by definition.
-#' @param by_definition_2_list An optional second list of temperature summaries by definition.
+#' @param data_by_year A list of temperature summaries by definition (e.g., year).
+#' @param data_by_year_month An optional second list of temperature summaries by definition (e.g., year and month).
 #' @return A list containing temperature summary information.
 
 #' @examples
 #' # Example usage:
-#' #get_temp_summaries("summary_name", year = 2023, month = 5, by_definition_list = my_definition_list)
+#' #get_temp_summaries("summary_name", year = 2023, month = 5, data_by_year = my_definition_list)
 get_temp_summaries <- function(temp_summary_name, year, month,
-                               by_definition_list, by_definition_2_list = NULL){
-  # Note, we take the na.rm bits from by_definition_list
-  temp_summary <- by_definition_list[[temp_summary_name]]
-  temp_summary_2 <- by_definition_2_list[[temp_summary_name]]
+                               data_by_year, data_by_year_month = NULL){
+  # Note, we take the na.rm bits from data_by_year
+  temp_summary <- data_by_year[[temp_summary_name]]
+  temp_summary_2 <- data_by_year_month[[temp_summary_name]]
   to <- c()
   if (!is.null(temp_summary)){
     if (year %in% unlist(temp_summary$by_1) | year %in% unlist(temp_summary_2$by_1)){

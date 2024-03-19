@@ -10,7 +10,7 @@ get_start_rains_definitions(start_rains)
 \item{start_rains}{The start rains data.}
 }
 \value{
-A JSON representation of start rains definitions.
+A list of start of rains definitions
 }
 \description{
 Retrieves start rains definitions.

@@ -4,11 +4,7 @@
 \alias{get_annual_rain_definitions}
 \title{Get annual rain definitions}
 \usage{
-get_annual_rain_definitions(
-  sum_rain = NULL,
-  n_rain_def = NULL,
-  data_definition
-)
+get_annual_rain_definitions(sum_rain = NULL, n_rain_def = NULL, data)
 }
 \arguments{
 \item{annual_rain}{The annual rain data.}
@@ -16,7 +12,7 @@ get_annual_rain_definitions(
 \item{ghana_defs}{The Ghana definitions.}
 }
 \value{
-A JSON representation of annual rain definitions.
+A list representation of annual rain definitions.
 }
 \description{
 Retrieves annual rain definitions.

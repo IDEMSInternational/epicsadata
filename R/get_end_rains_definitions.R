@@ -3,7 +3,7 @@
 #' Retrieves end rains definitions.
 #'
 #' @param end_rains The end rains data.
-#' @return A JSON representation of end rains definitions.
+#' @return A list representation of end rains definitions.
 #' @examples
 #' # Example usage:
 #' #get_end_rains_definitions(end_rains)
