@@ -3,6 +3,7 @@
 #' This function retrieves and processes station metadata for the specified country and format. The station metadata includes information about station IDs and their associated definitions.
 #'
 #' @param country A character vector specifying the country code for which station metadata should be retrieved and processed.
+#' @param station_id A character vector specifying the station ID(s) for the given country.
 #' @param format A character vector indicating the desired format of the processed data. It can be "wide", "long", "nested", or "list".
 #'
 #' @return Depending on the specified format, the function returns the processed station metadata in either wide, long, nested, or list format.
