@@ -10,8 +10,8 @@
 #' named dynamically as "val1", "val2", etc., corresponding to their original order in the input vector.
 #' 
 #' @examples
-#' parameter <- c("A1=100", "A2=200", "A3=150")
-#' split_list(parameter)
+#' #parameter <- c("A1=100", "A2=200", "A3=150")
+#' #split_list(parameter)
 split_list <- function(parameter){
   # Split each element of the vector on the equals sign
   split_values <- strsplit(parameter, "=")
