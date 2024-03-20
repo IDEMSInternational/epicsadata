@@ -27,9 +27,4 @@ Retrieves annual rain definitions.
 # Example usage:
 #get_total_rain_counts(annual_rain, ghana_defs)
 
-# In Progress.
-get seasonal_sum_rain as the definition even if there are multiple.
-and annual_sum_rain even if multiple
-This is found by seeing which are
-called sum_<rainfallname>, and then checking if there is filter_by_year for seasonal
 }
