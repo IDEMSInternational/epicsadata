@@ -4,7 +4,13 @@
 \alias{build_annual_summaries_definitions}
 \title{Get annual summaries definitions}
 \usage{
-build_annual_summaries_definitions(data_name, data_by_year, data)
+build_annual_summaries_definitions(
+  data_name,
+  data_by_year,
+  data,
+  rain_name = data_book$get_climatic_column_name(data_name = data_name, col_name =
+    "rain")
+)
 }
 \arguments{
 \item{data_name}{The name of the data.}

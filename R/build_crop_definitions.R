@@ -6,7 +6,7 @@
 #'
 #' @param definition_file A list containing file data and attributes generated in R-Instat with
 #' named vectors `Var1`, `Var2`, and `Var3` for water requirements, planting dates, and planting length respectively.
-#' 
+#'
 #' @export
 #' @return A list representing the structured crop definition data, including water requirements, 
 #' planting dates, and planting length.
