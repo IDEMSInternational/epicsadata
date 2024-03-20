@@ -6,6 +6,7 @@
 #' @param data_name The name of the data.
 #' @param data_by_year A list containing definitions for start of rains, end of rains, end of season, and seasonal length.
 #' @param data A list containing data definitions.
+#' @param rain_name The name of the rainfall column in the data.
 #' @return A list of annual summaries definitions.
 #' @export
 #' @examples
