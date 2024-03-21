@@ -12,14 +12,13 @@
 #' @examples
 #' #data <- your_data
 #' #get_total_rain_counts(data_name = "ghana", data_by_year = data, rain_name = "rain")
-#'
 get_total_rain_counts <- function(data_name = "ghana",
                                   data_by_year,
                                   rain_name = data_book$get_climatic_column_name(data_name = "ghana", col_name = "rain")){
-  #' get seasonal_sum_rain as the definition even if there are multiple.
-  #' and annual_sum_rain even if multiple
-  #' This is found by seeing which are
-  #' called sum_<rainfallname>, and then checking if there is filter_by_year for seasonal
+  # get seasonal_sum_rain as the definition even if there are multiple.
+  # and annual_sum_rain even if multiple
+  # This is found by seeing which are
+  # called sum_<rainfallname>, and then checking if there is filter_by_year for seasonal
   sum_rain_name <- paste0("sum_", rain_name)
   data_by_year_names <- names(data_by_year)
   count_names <- grepl(sum_rain_name, data_by_year_names)

@@ -12,7 +12,7 @@
 #' @return A list containing summarised rain definitions for the specified time period.
 #'
 #' @examples
-#'# sum_rain_definitions(time = "annual_rain", total_rain = TRUE, n_rain = FALSE, sum_rain = c(100, 200), n_raindays = NULL)
+#'# TODO
 sum_rain_definitions <- function(time = "annual_rain", total_rain = annual_total_rain,
          n_rain = annual_count_raindays, sum_rain = annual_sum_rain,
          n_raindays = annual_n_raindays, data = NULL){
