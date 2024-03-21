@@ -41,9 +41,4 @@ total number of rainy days for both annual and seasonal periods.
 
 #data <- your_data
 #get_total_rain_counts(data_name = "ghana", data_by_year = data, rain_name = "rain")
-
-get seasonal_sum_rain as the definition even if there are multiple.
-and annual_sum_rain even if multiple
-This is found by seeing which are
-called sum_<rainfallname>, and then checking if there is filter_by_year for seasonal
 }

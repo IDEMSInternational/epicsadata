@@ -33,5 +33,5 @@ A list containing summarised rain definitions for the specified time period.
 This function summarises rain definitions for a specific time period.
 }
 \examples{
-# sum_rain_definitions(time = "annual_rain", total_rain = TRUE, n_rain = FALSE, sum_rain = c(100, 200), n_raindays = NULL)
+# TODO
 }
