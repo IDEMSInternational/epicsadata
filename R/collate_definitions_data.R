@@ -22,8 +22,7 @@
 #' #                  get_calculations = function(data_name) { list() },
 #' #                  get_data_frame_metadata = function(data_name) { list() })
 #' #collate_definitions_data(data_book = data_book)
-#'
-#' @importFrom epicsadata build_annual_summaries_definitions build_total_temperature_summaries build_crop_definitions build_season_start_probabilities
+#' 
 collate_definitions_data <- function(main_data_set = "ghana",
                                      data_by_year = "ghana_by_station_year",
                                      data_by_year_month = NULL,
