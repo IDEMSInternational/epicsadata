@@ -28,8 +28,8 @@ add_definitions_to_bucket <- function(country, station_id, new_definitions) {
   new_filename <- paste0(station_id, ".", timestamp, ".json")
   
   # Create a new JSON file with the provided definitions
-  new_json <- jsonlite::read_json(paste0(new_definitions, ".json"))
-  
+  new_json <- paste0(new_definitions, ".json")
+
   # Upload the new JSON file to the GCS bucket
   googleCloudStorageR::gcs_upload(file = new_json,
                                   bucket = bucket,

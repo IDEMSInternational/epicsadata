@@ -9,7 +9,7 @@ collate_definitions_data(
   data_by_year = "ghana_by_station_year",
   data_by_year_month = NULL,
   crop_data = "crop_def",
-  rain = data_book$get_climatic_column_name(data_name = "ghana", col_name = "rain"),
+  rain = data_book$get_climatic_column_name(data_name = "ghana", "rain"),
   tmin = data_book$get_climatic_column_name(data_name = "ghana", "temp_min"),
   tmax = data_book$get_climatic_column_name("ghana", "temp_max"),
   year = data_book$get_climatic_column_name("ghana", "year"),
@@ -36,14 +36,14 @@ collate_definitions_data(
 \item{month}{The name of the column containing month data.}
 }
 \value{
-A JSON-formatted string that contains the aggregated data definitions.
+A list that contains the aggregated data definitions.
 }
 \description{
 This function aggregates various climatic data definitions, including annual summaries,
 temperature summaries, crop data, and probabilities of season starts. It is designed to work
 within a specific context that involves climatic data processing and analysis, particularly
 focusing on data related to Ghana's climate. The function uses multiple sources of data
-and calculations to generate a comprehensive JSON-formatted summary.
+and calculations to generate a comprehensive list-formatted summary.
 }
 \examples{
 #data_book <- list(get_climatic_column_name = function(data_name, col_name) { return(col_name) },
