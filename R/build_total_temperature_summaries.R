@@ -9,7 +9,7 @@
 #' @param data_by_year A list of temperature summaries by definition (e.g., year).
 #' @param data_by_year_month An optional second list of temperature summaries by definition (e.g., year and month).
 #' @return A list containing total temperature summaries.
-#' @export
+#' 
 #' @examples
 #' # Example usage:
 #' #total_temperature_summaries(tmin = "tmin", tmax = "tmax", year = "year", month = "month", 

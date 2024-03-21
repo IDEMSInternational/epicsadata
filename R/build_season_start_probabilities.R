@@ -5,7 +5,6 @@
 #'
 #' @param definition_file A list containing file data and attributes generated in R-Instat.
 #'
-#' @export
 #' @return A list representing the season start probabilities with the specified days.
 #'
 #' @examples
