@@ -47,7 +47,7 @@ collate_definitions_data <- function(main_data_set = "ghana",
   
   # if yes to annual temperature summaries - give the data frame "ghana_by_station_year"
   # if yes to monthly temperature summaries - give the data frame "ghana_by_station_year_month"
-  temperature_summaries <- build_total_temperature_summaries1(data_by_year = definitions_year,
+  temperature_summaries <- build_total_temperature_summaries(data_by_year = definitions_year,
                                                                          data_by_year_month = definitions_year_month,
                                                                          tmin = tmin, tmax = tmax, year = year,
                                                                          month = month)
