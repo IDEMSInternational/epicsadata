@@ -8,7 +8,7 @@
 #' @param data A list containing data definitions.
 #' @param rain_name The name of the rainfall column in the data.
 #' @return A list of annual summaries definitions.
-#' @export
+#'
 #' @examples
 #' # Example usage:
 #' #get_annual_summaries_definitions("data_name", data_by_year, data)

@@ -5,7 +5,6 @@
 #' @param calculation A list of calculations.
 #' 
 #' @return A list of R-Instat definitions.
-#' @export
 #' 
 #' @examples
 #' # Example usage:
