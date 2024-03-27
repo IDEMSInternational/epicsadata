@@ -36,8 +36,6 @@ get_temp_summaries <- function(temp_summary_name, year, month,
     na_consec <- extract_value(temp_summary$function_exp, "na_consecutive_n = ", TRUE)
     na_prop <- extract_value(temp_summary$function_exp, "na_max_prop = ", TRUE)
     variables_list = c("to", "na_rm", "na_n", "na_n_non", "na_consec", "na_prop")
-    print("C")
-    
     temp_summary_name_list <- NULL
     for (variable in variables_list) {
       if (exists(variable) && !is.na(get(variable))) {
