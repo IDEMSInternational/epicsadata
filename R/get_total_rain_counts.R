@@ -86,14 +86,18 @@ get_total_rain_counts <- function(data_name = "ghana",
     annual_rain_definition <- sum_rain_definitions(time = "annual_rain", total_rain = annual_total_rain,
                                                    n_rain = annual_count_raindays, sum_rain = annual_sum_rain,
                                                    n_raindays = annual_n_raindays, data = data_definition)
+  } else {
+    annual_rain_definition <- NULL
   }
   
   if (as.logical(seasonal_total_rain) | as.logical(seasonal_count_raindays)){
     seasonal_rain_definition <- sum_rain_definitions(time = "seasonal_rain", total_rain = seasonal_total_rain,
                                                      n_rain = seasonal_count_raindays, sum_rain = seasonal_sum_rain,
                                                      n_raindays = seasonal_n_raindays, data = data_definition)
+  } else {
+    seasonal_rain_definition <- NULL
   }
-  
+
   rain_definitions <- c(annual_rain_definition, seasonal_rain_definition)
   return(rain_definitions)
 }

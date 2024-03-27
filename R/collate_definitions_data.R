@@ -6,7 +6,7 @@
 #' focusing on data related to Ghana's climate. The function uses multiple sources of data
 #' and calculations to generate a comprehensive list-formatted summary.
 #'
-#' @param main_data_set The name of the main data set, default is "ghana".
+#' @param data The name of the main data set, default is "ghana".
 #' @param data_by_year The name of the data set that contains data aggregated by year, default is "ghana_by_station_year".
 #' @param data_by_year_month The name of the data set that contains data aggregated by year and month, default is NULL.
 #' @param crop_data The name of the crop data set, default is "crop_def".
@@ -15,6 +15,7 @@
 #' @param tmax The name of the column containing maximum temperature data.
 #' @param year The name of the column containing year data.
 #' @param month The name of the column containing month data.
+#' @param summaries The name of the summaries to show. Options are `"annual_rainfall"`, `"annual_temperature"`, `"monthly_temperature"`, `"extremes"`, `"crop_success"`, `"start_season"`.
 #' @export
 #' @return A list that contains the aggregated data definitions.
 #' @examples
@@ -23,7 +24,7 @@
 #' #                  get_data_frame_metadata = function(data_name) { list() })
 #' #collate_definitions_data(data_book = data_book)
 #' 
-collate_definitions_data <- function(main_data_set = "ghana",
+collate_definitions_data <- function(data = "ghana",
                                      data_by_year = "ghana_by_station_year",
                                      data_by_year_month = NULL,
                                      crop_data = "crop_def",
@@ -31,34 +32,74 @@ collate_definitions_data <- function(main_data_set = "ghana",
                                      tmin = data_book$get_climatic_column_name(data_name = "ghana", "temp_min"),
                                      tmax = data_book$get_climatic_column_name("ghana", "temp_max"),
                                      year = data_book$get_climatic_column_name("ghana", "year"),
-                                     month = data_book$get_climatic_column_name("ghana", "month")){
+                                     month = data_book$get_climatic_column_name("ghana", "month"),
+                                     summaries = c("annual_rainfall", "annual_temperature", "monthly_temperature", "extremes", "crop_success", "start_season")){
   
-  definitions_data <- get_r_instat_definitions(data_book$get_calculations(main_data_set))
+  definitions_data <- get_r_instat_definitions(data_book$get_calculations(data))
   definitions_year <- get_r_instat_definitions(data_book$get_calculations(data_by_year))
-  if (!is.null(data_by_year_month)) definitions_year_month <- get_r_instat_definitions(data_book$get_calculations(data_by_year_month))
-  definitions_crop <- data_book$get_data_frame_metadata(crop_data)
   
   # if yes to annual summaries - give the data frame "ghana_by_station_year"
-  annual_summaries <- build_annual_summaries_definitions(data_name = main_data_set,
-                                                                     data_by_year = definitions_year,
-                                                                     data = definitions_data,
-                                                                     rain_name = rain)
-  # TODO: if data_definitions_list is NULL then get it to work
-  
-  # if yes to annual temperature summaries - give the data frame "ghana_by_station_year"
-  # if yes to monthly temperature summaries - give the data frame "ghana_by_station_year_month"
-  temperature_summaries <- build_total_temperature_summaries(data_by_year = definitions_year,
-                                                                         data_by_year_month = definitions_year_month,
-                                                                         tmin = tmin, tmax = tmax, year = year,
-                                                                         month = month)
+  if ("annual_rainfall" %in% summaries){
+    annual_summaries <- build_annual_summaries_definitions(data_name = data,
+                                                           data_by_year = definitions_year,
+                                                           data = definitions_data,
+                                                           rain_name = rain)
+  } else {
+    annual_summaries <- NULL
+  }
+
+  if (any(grepl("_temperature", summaries))){
+    # if yes to annual temperature summaries - give the data frame "ghana_by_station_year"
+    # if yes to monthly temperature summaries - give the data frame "ghana_by_station_year_month"
+    if ("annual_temperature" %in% summaries){
+      annual_temp <- definitions_year
+    } else {
+      annual_temp <- NULL
+    }
+    if ("monthly_temperature" %in% summaries){
+      if (!is.null(data_by_year_month)){
+        definitions_year_month <- get_r_instat_definitions(data_book$get_calculations(data_by_year_month))
+      } else {
+        stop("monthly temperature requested but no data_by_year_month file given.")
+      }
+    } else {
+      definitions_year_month <- NULL
+    }
+    temperature_summaries <- build_total_temperature_summaries(data_by_year = annual_temp,
+                                                               data_by_year_month = definitions_year_month,
+                                                               tmin = tmin, tmax = tmax, year = year,
+                                                               month = month)
+  } else {
+    temperature_summaries <- NULL
+  }
+
   # if yes to crop success then ...
-  crop_summaries <- build_crop_definitions(definitions_crop)
-  
+  if ("crop_success" %in% summaries){
+    if (!is.null(crop_data)){
+      definitions_crop <- data_book$get_data_frame_metadata(crop_data)
+    } else {
+      stop("Crop summaries requested but no crop_data file given.")
+    }
+    crop_summaries <- build_crop_definitions(definitions_crop)
+  } else {
+    crop_summaries <- NULL
+  }
+
   # if yes to probabilities
-  season_start_summaries <- build_season_start_probabilities(definitions_crop)
+  if ("start_season" %in% summaries){
+    if (!is.null(crop_data)){
+      definitions_crop <- data_book$get_data_frame_metadata(crop_data)
+    } else {
+      stop("Season start summaries requested but no crop_data file given.")
+    }
+    season_start_summaries <- build_season_start_probabilities(definitions_crop)
+  } else {
+    season_start_summaries <- NULL
+  }
   
   # extremes then ...
   
+  # overall:
   data_list <- c(annual_summaries, temperature_summaries, crop_summaries, season_start_summaries)
   
   # remove anything of length 0 

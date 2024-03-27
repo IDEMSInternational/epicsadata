@@ -5,7 +5,7 @@
 \title{Collate Definitions Data for Climatic Analysis from R-Instat}
 \usage{
 collate_definitions_data(
-  main_data_set = "ghana",
+  data = "ghana",
   data_by_year = "ghana_by_station_year",
   data_by_year_month = NULL,
   crop_data = "crop_def",
@@ -13,11 +13,13 @@ collate_definitions_data(
   tmin = data_book$get_climatic_column_name(data_name = "ghana", "temp_min"),
   tmax = data_book$get_climatic_column_name("ghana", "temp_max"),
   year = data_book$get_climatic_column_name("ghana", "year"),
-  month = data_book$get_climatic_column_name("ghana", "month")
+  month = data_book$get_climatic_column_name("ghana", "month"),
+  summaries = c("annual_rainfall", "annual_temperature", "monthly_temperature",
+    "extremes", "crop_success", "start_season")
 )
 }
 \arguments{
-\item{main_data_set}{The name of the main data set, default is "ghana".}
+\item{data}{The name of the main data set, default is "ghana".}
 
 \item{data_by_year}{The name of the data set that contains data aggregated by year, default is "ghana_by_station_year".}
 
@@ -34,6 +36,8 @@ collate_definitions_data(
 \item{year}{The name of the column containing year data.}
 
 \item{month}{The name of the column containing month data.}
+
+\item{summaries}{The name of the summaries to show. Options are \code{"annual_rainfall"}, \code{"annual_temperature"}, \code{"monthly_temperature"}, \code{"extremes"}, \code{"crop_success"}, \code{"start_season"}.}
 }
 \value{
 A list that contains the aggregated data definitions.
