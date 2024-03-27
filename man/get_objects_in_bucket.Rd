@@ -11,7 +11,7 @@ get_objects_in_bucket(country, station_id, timestamp)
 
 \item{station_id}{A character string specifying the station ID.}
 
-\item{get_summaries}{A list containing additional information about summaries.}
+\item{timestamp}{The timestamp on the object file name to import. Default \code{NULL}}
 }
 \value{
 A list containing imported or generated summary definitions.
@@ -23,6 +23,6 @@ If files are found, it imports definitions from the file; otherwise, it generate
 }
 \examples{
 # Import summary definitions
-import_summary_definitions("USA", "station123", list("info1", "info2"))
+#import_summary_definitions("USA", "station123", list("info1", "info2"))
 
 }
