@@ -6,7 +6,7 @@
 #' 
 #' @param country A character string specifying the country.
 #' @param station_id A character string specifying the station ID.
-#' @param get_summaries A list containing additional information about summaries.
+#' @param timestamp The timestamp on the object file name to import. Default `NULL`
 #' 
 #' @return A list containing imported or generated summary definitions.
 #' 
@@ -14,11 +14,15 @@
 #' 
 #' @examples
 #' # Import summary definitions
-#' import_summary_definitions("USA", "station123", list("info1", "info2"))
+#' #import_summary_definitions("USA", "station123", list("info1", "info2"))
 #' 
 #' @export
 get_objects_in_bucket <- function(country, station_id, timestamp) {
-  file_name <- paste0(station_id, ".", timestamp)
+  if (!is.null(timestamp)){
+    file_name <- paste0(station_id, ".", timestamp)
+  } else {
+    file_name <- station_id
+  }
   bucket_name <- get_bucket_name(country)
   files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name,
                                                  prefix = paste0("definitions/", file_name, "."),
