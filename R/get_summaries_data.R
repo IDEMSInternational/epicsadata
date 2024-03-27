@@ -21,6 +21,7 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
     
     if (nrow(objects_in_space) == 0){
       dfs[[i]] <- objects_in_space
+      timestamp <- NULL
     } else {
       #   for rds_files > 1 (e.g., if several summary files)
       rds_files <- objects_in_space$name
@@ -39,7 +40,8 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
         f <- epicsadata:::update_summaries_data(country, station_id[i], summary)
         dfs[[i]] <- f
       }
+      timestamp <- gsub(".*\\.(\\d+)\\.rds", "\\1", rds_files)
     }
   }
-  return(dfs[[i]])
+  return(list(dfs[[i]], timestamp))
 }

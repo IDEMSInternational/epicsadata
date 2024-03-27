@@ -4,6 +4,7 @@
 #'
 #' @param country A character vector specifying the country or countries from which to get the definitions data. Options are `"mz"` and `"zm"`.
 #' @param station_id A character string specifying the ID of the station for which to get the definitions data.
+#' @param file Default `NULL` meaning that the most recent definitions file will be found and imported. Otherwise specify as a string the file to import. In format: "STATIONNAME.TIMESTAMP" e.g. "1.20240311152831"
 #'
 #' @return A data frame containing daily data based on the station ID.
 #'
@@ -16,7 +17,7 @@
 #' @export
 #'
 #' @examples # todo
-get_definitions_data <- function(country = c("mw", "zm"), station_id) {
+get_definitions_data <- function(country = c("mw", "zm"), station_id, file = NULL) {
   if (length(country) > 1) stop("'country' must be of length 1")
   country <- match.arg(country)
   station_id <- as.character(station_id)
@@ -32,33 +33,45 @@ get_definitions_data <- function(country = c("mw", "zm"), station_id) {
   #     dfs[[i]] <- f #jsonlite::write_json(f)
   #   }
   # }
-  bucket_name <- get_bucket_name(country)
-  for (i in seq_along(station_id)) {
-    # List all files in the "definitions" directory for the station
-    files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name,
-                                                   prefix = paste0("definitions/", station_id[i], "."),
-                                                   versions = TRUE)
-    
-    if (nrow(files) == 0) { stop("No files found. Check country and station_id")}
-    # Filter files with the ".json" extension
-    files <- files %>% dplyr::filter(grepl("\\.json$", name))
-    json_files <- files$name
-    
-    # Check if multiple json files found. If so, take hte most recent one.
-    if (length(json_files) > 1){
-      # Extract timestamps from file names
-      station_id[i] <- extract_most_recent_json(json_files)
+  if (is.null(file)){
+    bucket_name <- get_bucket_name(country)
+    for (i in seq_along(station_id)) {
+      # List all files in the "definitions" directory for the station
+      files <- googleCloudStorageR::gcs_list_objects(bucket = bucket_name,
+                                                     prefix = paste0("definitions/", station_id[i], "."),
+                                                     versions = TRUE)
+      
+      if (nrow(files) == 0) { stop("No files found. Check country and station_id")}
+      # Filter files with the ".json" extension
+      files <- files %>% dplyr::filter(grepl("\\.json$", name))
+      json_files <- files$name
+      
+      # Check if multiple json files found. If so, take hte most recent one.
+      if (length(json_files) > 1){
+        # Extract timestamps from file names
+        station_id[i] <- extract_most_recent_json(json_files)
+      }
+      f <- paste0("definitions/", station_id[i], ".json")
+      if (file.exists(f)) {
+        dfs[[i]] <- jsonlite::read_json(f)
+      } else {
+        f <- update_definitions_data(country, station_id[i])
+        dfs[[i]] <- f #jsonlite::write_json(f)
+      }
     }
-    f <- paste0("definitions/", station_id[i], ".json")
-    if (file.exists(f)) {
-      dfs[[i]] <- jsonlite::read_json(f)
+    if (length(station_id) > 1) {
+      station_data <- dplyr::bind_rows(dfs)
     } else {
-      f <- update_definitions_data(country, station_id[i])
-      dfs[[i]] <- f #jsonlite::write_json(f)
+      station_data <- dfs[[1]]
+    }
+  } else {
+    f <- paste0("definitions/", file, ".json")
+    if (file.exists(f)) {
+      station_data <- jsonlite::read_json(f)
+    } else {
+      f <- update_definitions_data(country, file)
+      station_data <- f
     }
   }
-  if (length(station_id) > 1) {
-    station_data <- dplyr::bind_rows(dfs)
-  } else station_data <- dfs[[1]]
   return(station_data)
 }

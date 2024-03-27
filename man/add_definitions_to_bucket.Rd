@@ -4,7 +4,12 @@
 \alias{add_definitions_to_bucket}
 \title{Add New Definitions to Google Cloud Storage Bucket}
 \usage{
-add_definitions_to_bucket(country, station_id, new_definitions)
+add_definitions_to_bucket(
+  country,
+  station_id,
+  new_definitions,
+  timestamp = NULL
+)
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to get the definitions data. Options are \code{"mz"} and \code{"zm"}.}
@@ -12,6 +17,8 @@ add_definitions_to_bucket(country, station_id, new_definitions)
 \item{station_id}{A character string specifying the ID of the station for which to get the definitions data.}
 
 \item{new_definitions}{A character vector specifying the path to the JSON file containing the new definitions.}
+
+\item{timestamp}{A character vector with a timestamp. By default this is \code{NULL} so is generated.}
 }
 \description{
 This function adds a new definitions file with a timestamp to a specified Google Cloud Storage (GCS) bucket. The new definitions are sourced from a JSON file provided as input.

@@ -6,6 +6,7 @@
 #' @param station_id A character string specifying the ID of the station that the data corresponds to.
 #' @param data The data to upload.
 #' @param summary The summary function used to create the data.
+#' @param timestamp A character vector with a timestamp. By default this is `NULL` so is generated.
 #'
 #' @details
 #' The function creates a timestamp in the format "YYYYMMDDHHMMSS" and appends it to the station_id to form the filename. It then reads the provided file, creates a new file with the timestamped filename, and uploads it to the specified GCS bucket.
@@ -18,13 +19,15 @@
 #' \code{get_bucket_name} for retrieving the GCS bucket name.
 #'
 #'
-add_summaries_to_bucket <- function(country, station_id, data, summary) {
+add_summaries_to_bucket <- function(country, station_id, data, summary, timestamp = NULL) {
   # Set the GCS bucket name
   bucket <- get_bucket_name(country)
   data_dir <- "summaries"
   
-  # Generate a timestamp
-  timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S")
+  if (!is.null(timestamp)){
+    # Generate a timestamp
+    timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S")
+  }
   
   # Define the filename with the station ID, timestamp, and RDS extension
   new_filename <- paste0(summary, "_", station_id, ".", timestamp, ".rds")

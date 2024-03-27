@@ -4,12 +4,14 @@
 \alias{get_definitions_data}
 \title{Get Daily Definitions Data}
 \usage{
-get_definitions_data(country = c("mw", "zm"), station_id)
+get_definitions_data(country = c("mw", "zm"), station_id, file = NULL)
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to get the definitions data. Options are \code{"mz"} and \code{"zm"}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to get the definitions data.}
+
+\item{file}{Default \code{NULL} meaning that the most recent definitions file will be found and imported. Otherwise specify as a string the file to import. In format: "STATIONNAME.TIMESTAMP" e.g. "1.20240311152831"}
 }
 \value{
 A data frame containing daily data based on the station ID.
