@@ -4,7 +4,7 @@
 \alias{get_season_length_definitions}
 \title{Get season length definitions}
 \usage{
-get_season_length_definitions(length)
+get_season_length_definitions(length = NULL)
 }
 \arguments{
 \item{length}{The season length data.}

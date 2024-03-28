@@ -65,13 +65,14 @@ collate_definitions_data <- function(data = "ghana",
     } else {
       definitions_year_month <- NULL
     }
-    temperature_summaries <- build_total_temperature_summaries(data_by_year = annual_temp,
-                                                               data_by_year_month = definitions_year_month,
-                                                               tmin = tmin, tmax = tmax, year = year,
-                                                               month = month)
   } else {
-    temperature_summaries <- NULL
+    annual_temp <- NULL
+    definitions_year_month <- NULL
   }
+  temperature_summaries <- build_total_temperature_summaries(data_by_year = annual_temp,
+                                                             data_by_year_month = definitions_year_month,
+                                                             tmin = tmin, tmax = tmax, year = year,
+                                                             month = month)
 
   # if yes to crop success then ...
   if ("crop_success" %in% summaries){
@@ -80,10 +81,10 @@ collate_definitions_data <- function(data = "ghana",
     } else {
       stop("Crop summaries requested but no crop_data file given.")
     }
-    crop_summaries <- build_crop_definitions(definitions_crop)
   } else {
-    crop_summaries <- NULL
+    definitions_crop <- NULL
   }
+  crop_summaries <- build_crop_definitions(definitions_crop)
 
   # if yes to probabilities
   if ("start_season" %in% summaries){
@@ -92,10 +93,11 @@ collate_definitions_data <- function(data = "ghana",
     } else {
       stop("Season start summaries requested but no crop_data file given.")
     }
-    season_start_summaries <- build_season_start_probabilities(definitions_crop)
   } else {
-    season_start_summaries <- NULL
+    definitions_crop <- NULL
   }
+  season_start_summaries <- build_season_start_probabilities(definitions_crop)
+  
   
   # extremes then ...
   

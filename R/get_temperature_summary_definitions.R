@@ -20,9 +20,9 @@ get_temperature_summary_definitions <- function(tmin = data_book$get_climatic_co
                                                 month = data_book$get_climatic_column_name(data_name, "month"),
                                                 data_by_year,
                                                 data_by_year_month = NULL){
-  tmin_summary_names <- paste0(c("min_", "max_", "mean_"), tmin)
-  tmax_summary_names <- paste0(c("min_", "max_", "mean_"), tmax)
-  temp_summary_names <- c(tmin_summary_names, tmax_summary_names)
+    tmin_summary_names <- paste0(c("min_", "max_", "mean_"), tmin)
+    tmax_summary_names <- paste0(c("min_", "max_", "mean_"), tmax)
+    temp_summary_names <- c(tmin_summary_names, tmax_summary_names)
   temp_summary_definitions <- purrr::map(.x = temp_summary_names,
                                          .f = ~get_temp_summaries(.x, year, month, data_by_year, data_by_year_month))
   names(temp_summary_definitions) <- c(paste0(c("min_", "max_", "mean_"), "tmin"),

@@ -4,7 +4,7 @@
 \alias{get_end_season_definitions}
 \title{Get end of season definitions}
 \usage{
-get_end_season_definitions(end_season)
+get_end_season_definitions(end_season = NULL)
 }
 \arguments{
 \item{end_season}{The end season data.}

@@ -4,7 +4,7 @@
 \alias{build_crop_definitions}
 \title{Build Crop Definitions from File}
 \usage{
-build_crop_definitions(definition_file)
+build_crop_definitions(definition_file = NULL)
 }
 \arguments{
 \item{definition_file}{A list containing file data and attributes generated in R-Instat with

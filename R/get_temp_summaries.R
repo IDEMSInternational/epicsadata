@@ -14,36 +14,49 @@
 #' #get_temp_summaries("summary_name", year = 2023, month = 5, data_by_year = my_definition_list)
 get_temp_summaries <- function(temp_summary_name, year, month,
                                data_by_year, data_by_year_month = NULL){
-  # Note, we take the na.rm bits from data_by_year
-  temp_summary <- data_by_year[[temp_summary_name]]
-  temp_summary_2 <- data_by_year_month[[temp_summary_name]]
 
-  if (is.null(temp_summary)){
-    temp_summary <- temp_summary_2
-    temp_summary$by_1 <- temp_summary$by_2
-  }
-  to <- c()
-  if (!is.null(temp_summary)){
-    if (year %in% unlist(temp_summary$by_1) | year %in% unlist(temp_summary_2$by_1)){
-      to <- c(to, "annual")
-    }
-    if (month %in% unlist(temp_summary$by_1) | month %in% unlist(temp_summary_2$by_1)){
-      to <- c(to, "monthly")
-    }
-    na_rm <- extract_value(temp_summary$function_exp, "na.rm = ", FALSE)
-    na_n <- extract_value(temp_summary$function_exp, "na_max_n = ", TRUE)
-    na_n_non <- extract_value(temp_summary$function_exp, "na_min_n = ", TRUE)
-    na_consec <- extract_value(temp_summary$function_exp, "na_consecutive_n = ", TRUE)
-    na_prop <- extract_value(temp_summary$function_exp, "na_max_prop = ", TRUE)
-    variables_list = c("to", "na_rm", "na_n", "na_n_non", "na_consec", "na_prop")
-    temp_summary_name_list <- NULL
+  temp_summary_name_list <- NULL
+  variables_list = c("to", "na_rm", "na_n", "na_n_non", "na_consec", "na_prop")
+  
+  # if there is neither, return the definitions in an empty file
+  if (is.null(data_by_year) && is.null(data_by_year_month)){
     for (variable in variables_list) {
-      if (exists(variable) && !is.na(get(variable))) {
-        temp_summary_name_list[[variable]] <- get(variable)
-      }
+      temp_summary_name_list[[variable]] <- NA
     }
   } else {
-    temp_summary_name_list <- NULL
+    # Note, we take the na.rm bits from data_by_year
+    temp_summary <- data_by_year[[temp_summary_name]]
+    temp_summary_2 <- data_by_year_month[[temp_summary_name]]
+    
+    if (is.null(temp_summary)){
+      temp_summary <- temp_summary_2
+      temp_summary$by_1 <- temp_summary$by_2
+    }
+    to <- c()
+    if (!is.null(temp_summary)){
+      if (year %in% unlist(temp_summary$by_1) | year %in% unlist(temp_summary_2$by_1)){
+        to <- c(to, "annual")
+      }
+      if (month %in% unlist(temp_summary$by_1) | month %in% unlist(temp_summary_2$by_1)){
+        to <- c(to, "monthly")
+      }
+      na_rm <- extract_value(temp_summary$function_exp, "na.rm = ", FALSE)
+      na_n <- extract_value(temp_summary$function_exp, "na_max_n = ", TRUE)
+      na_n_non <- extract_value(temp_summary$function_exp, "na_min_n = ", TRUE)
+      na_consec <- extract_value(temp_summary$function_exp, "na_consecutive_n = ", TRUE)
+      na_prop <- extract_value(temp_summary$function_exp, "na_max_prop = ", TRUE)
+      for (variable in variables_list) {
+        if (exists(variable) && !is.na(get(variable))) {
+          temp_summary_name_list[[variable]] <- get(variable)
+        } else {
+          temp_summary_name_list[[variable]] <- NA
+        }
+      }
+    } else {
+      for (variable in variables_list) {
+        temp_summary_name_list[[variable]] <- NA
+      }
+    } 
   }
   return(temp_summary_name_list)
 }

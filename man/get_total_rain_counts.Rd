@@ -6,14 +6,14 @@
 \title{Get annual rain definitions}
 \usage{
 get_total_rain_counts(
-  data_name = "ghana",
-  data_by_year,
+  data_name,
+  data_by_year = NULL,
   rain_name = data_book$get_climatic_column_name(data_name = "ghana", col_name = "rain")
 )
 
 get_total_rain_counts(
-  data_name = "ghana",
-  data_by_year,
+  data_name,
+  data_by_year = NULL,
   rain_name = data_book$get_climatic_column_name(data_name = "ghana", col_name = "rain")
 )
 }

@@ -4,7 +4,7 @@
 \alias{build_season_start_probabilities}
 \title{Build Season Start Probabilities from File}
 \usage{
-build_season_start_probabilities(definition_file)
+build_season_start_probabilities(definition_file = NULL)
 }
 \arguments{
 \item{definition_file}{A list containing file data and attributes generated in R-Instat.}

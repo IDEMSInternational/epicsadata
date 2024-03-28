@@ -13,23 +13,23 @@
 #' @examples
 #' # Assuming definition_file is a correctly structured list:
 #' #get_crop_definitions(definition_file)
-build_crop_definitions <- function(definition_file){
-  values <- definition_file$out.attrs$dimnames
-  
-  water_requirements <- split_list(values$Var1)
-  planting_dates <- split_list(values$Var2)
-  planting_length <- split_list(values$Var3)
+build_crop_definitions <- function(definition_file = NULL){
   
   variables_list <- c("water_requirements", "planting_dates", "planting_length")
-  
-  # Create an empty list
   data_list <- list()
-  data_list[["crop_def"]] <- list()
   
+  if (!is.null(definition_file)){
+    values <- definition_file$out.attrs$dimnames
+    water_requirements <- split_list(values$Var1)
+    planting_dates <- split_list(values$Var2)
+    planting_length <- split_list(values$Var3)
+  }
   # Loop through variables and add to the list if defined
   for (variable in variables_list) {
     if (exists(variable) && !is.na(get(variable))) {
       data_list[["crops_success"]][[variable]] <- get(variable)
+    } else {
+      data_list[["crops_success"]][[variable]] <- NA
     }
   }
   return(data_list)
