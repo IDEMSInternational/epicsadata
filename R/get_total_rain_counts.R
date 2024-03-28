@@ -96,7 +96,7 @@ get_total_rain_counts <- function(data_name,
     }
     
     if (as.logical(annual_total_rain) | as.logical(annual_count_raindays)){
-      annual_rain_definition <- sum_rain_definitions1(time = "annual_rain", total_rain = annual_total_rain,
+      annual_rain_definition <- sum_rain_definitions(time = "annual_rain", total_rain = annual_total_rain,
                                                       n_rain = annual_count_raindays, sum_rain = annual_sum_rain,
                                                       n_raindays = annual_n_raindays, data = data_definition)
     } else {
@@ -106,7 +106,7 @@ get_total_rain_counts <- function(data_name,
     }
     
     if (as.logical(seasonal_total_rain) | as.logical(seasonal_count_raindays)){
-      seasonal_rain_definition <- sum_rain_definitions1(time = "seasonal_rain", total_rain = seasonal_total_rain,
+      seasonal_rain_definition <- sum_rain_definitions(time = "seasonal_rain", total_rain = seasonal_total_rain,
                                                         n_rain = seasonal_count_raindays, sum_rain = seasonal_sum_rain,
                                                         n_raindays = seasonal_n_raindays, data = data_definition)
     } else {
