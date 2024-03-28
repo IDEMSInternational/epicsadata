@@ -13,9 +13,9 @@
 #'
 #' @examples
 #'# TODO
-sum_rain_definitions <- function(time = "annual_rain", total_rain = annual_total_rain,
-         n_rain = annual_count_raindays, sum_rain = annual_sum_rain,
-         n_raindays = annual_n_raindays, data = NULL){
+sum_rain_definitions <- function(time = "annual_rain", total_rain,
+         n_rain, sum_rain,
+         n_raindays, data = NULL){
   data_list <- list()
   data_list[[time]] <- list()
   if (n_rain){
@@ -40,6 +40,8 @@ sum_rain_definitions <- function(time = "annual_rain", total_rain = annual_total
   for (variable in variables_list) {
     if (exists(variable) && !is.na(get(variable))) {
       data_list[[time]][[variable]] <- get(variable)
+    } else {
+      data_list[[time]][[variable]] <- NA
     }
   }
   return(data_list)

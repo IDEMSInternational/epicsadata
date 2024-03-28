@@ -4,7 +4,7 @@
 \alias{get_start_rains_definitions}
 \title{Get start of rains definitions}
 \usage{
-get_start_rains_definitions(start_rains)
+get_start_rains_definitions(start_rains = NULL)
 }
 \arguments{
 \item{start_rains}{The start rains data.}

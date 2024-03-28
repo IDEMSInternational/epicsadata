@@ -9,19 +9,19 @@
 #'
 #' @examples
 #' #get_season_start_probabilities(definition_file)
-build_season_start_probabilities <- function(definition_file){
-  values <- definition_file$out.attrs$dimnames
-  specified_day <- split_list(values$Var2)
-  
-  variables_list <- c("specified_day")
+build_season_start_probabilities <- function(definition_file = NULL){
   
   # Create an empty list
   data_list <- list()
   data_list[["season_start_probabilities"]] <- list()
   
-  # Loop through variables and add to the list if defined
-  data_list[["season_start_probabilities"]][["specified_day"]] <- specified_day
-  
+  if (!is.null(definition_file)){
+    values <- definition_file$out.attrs$dimnames
+    specified_day <- split_list(values$Var2)
+    data_list[["season_start_probabilities"]][["specified_day"]] <- specified_day
+  } else {
+    data_list[["season_start_probabilities"]][["specified_day"]] <- NA
+  }
   return(data_list)
 }
 

@@ -6,10 +6,10 @@
 \usage{
 sum_rain_definitions(
   time = "annual_rain",
-  total_rain = annual_total_rain,
-  n_rain = annual_count_raindays,
-  sum_rain = annual_sum_rain,
-  n_raindays = annual_n_raindays,
+  total_rain,
+  n_rain,
+  sum_rain,
+  n_raindays,
   data = NULL
 )
 }

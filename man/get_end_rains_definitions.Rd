@@ -4,7 +4,7 @@
 \alias{get_end_rains_definitions}
 \title{Get end rains definitions}
 \usage{
-get_end_rains_definitions(end_rains)
+get_end_rains_definitions(end_rains = NULL)
 }
 \arguments{
 \item{end_rains}{The end rains data.}
