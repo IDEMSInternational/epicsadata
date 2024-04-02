@@ -17,24 +17,19 @@
 #' @seealso
 #' \code{get_bucket_name} for retrieving the GCS bucket name.
 #'
-add_definitions_to_bucket <- function(country, station_id, new_definitions, timestamp = NULL) {
-  # Set the GCS bucket name and the path for the definitions files
+add_definitions_to_bucket <- function(country, station_id, new_definitions, timestamp = NULL){
   bucket <- get_bucket_name(country)
   definitions_dir <- "definitions"
-  
-  if (is.null(timestamp)){
-    # Generate a timestamp
-    timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S") 
+  if (is.null(timestamp)) {
+    timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S")
   }
-  
-  # Define the filename with the timestamp
   new_filename <- paste0(station_id, ".", timestamp, ".json")
   
-  # Create a new JSON file with the provided definitions
-  new_json <- paste0(new_definitions, ".json")
-
-  # Upload the new JSON file to the GCS bucket
-  googleCloudStorageR::gcs_upload(file = new_json,
-                                  bucket = bucket,
-                                  name = file.path(definitions_dir, new_filename))
+  object_function <- function(input, output) {
+    jsonlite::write_json(input, path = output, auto_unbox = TRUE, pretty = TRUE)
+  }
+  googleCloudStorageR::gcs_upload(file = new_definitions, bucket = bucket, 
+                                  name = paste0(file.path(definitions_dir, new_filename)),
+                                  object_function = object_function, 
+                                  predefinedAcl = "bucketLevel")
 }
