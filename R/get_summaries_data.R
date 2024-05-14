@@ -31,8 +31,8 @@ get_summaries_data <- function(country = c("mw", "zm"), station_id, summary) {
         timestamps <- suppressWarnings(as.numeric(timestamps))
         most_recent_index <- which.max(timestamps)
         rds_files <- rds_files[most_recent_index]
-        station_id[i] <- stringr::str_remove(stringr::str_remove(rds_files, paste0("summaries/", summary, "_")), ".rds")
       }
+        station_id[i] <- stringr::str_remove(stringr::str_remove(rds_files, paste0("summaries/", summary, "_")), ".rds")
       f <- paste0(country, "/", rds_files)
       if (file.exists(f)) {
         dfs[[i]] <- readRDS(f)
