@@ -19,7 +19,6 @@
 #' @examples # todo
 get_definitions_data <- function(country = c("mw", "zm"), station_id, file = NULL) {
   if (length(country) > 1) stop("'country' must be of length 1")
-  country <- match.arg(country)
   station_id <- as.character(station_id)
   dfs <- vector("list", length(station_id))
   names(dfs) <- station_id
