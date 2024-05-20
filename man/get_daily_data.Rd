@@ -4,7 +4,7 @@
 \alias{get_daily_data}
 \title{Get Daily Data}
 \usage{
-get_daily_data(country = c("mw", "zm"), station_id)
+get_daily_data(country = c("mw", "zm", "zm_test"), station_id)
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to get the data. Options are \code{"mz"} and \code{"zm"}.}

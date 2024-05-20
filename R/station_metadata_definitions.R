@@ -20,7 +20,6 @@
 #' # Retrieve and process station metadata for country "zm" in nested format
 #' #station_metadata_definitions(country = "zm", format = "nested")
 station_metadata_definitions <- function(country = c("zm", "mw"), station_id, format = c("wide", "long", "nested", "list")){
-  country <- match.arg(country)
   format <- match.arg(format)
   station_data <- station_metadata(country = "zm", station_id = station_id)
   
