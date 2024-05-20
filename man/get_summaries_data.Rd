@@ -4,7 +4,7 @@
 \alias{get_summaries_data}
 \title{Get Summaries Data}
 \usage{
-get_summaries_data(country = c("mw", "zm"), station_id, summary)
+get_summaries_data(country = c("mw", "zm", "zm_test"), station_id, summary)
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to get the data. Options are \code{"mz"} and \code{"zm"}.}
