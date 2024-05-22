@@ -24,7 +24,7 @@ add_summaries_to_bucket <- function(country, station_id, data, summary, timestam
   bucket <- get_bucket_name(country)
   data_dir <- "summaries"
   
-  if (!is.null(timestamp)){
+  if (is.null(timestamp)){
     # Generate a timestamp
     timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S")
   }
