@@ -4,10 +4,10 @@
 \alias{get_forecast_data}
 \title{Get Forecast Data}
 \usage{
-get_forecast_data(country = c("mz", "zm"), station_id)
+get_forecast_data(country, station_id)
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to get the forecast data. Options are \code{"mz"} and \code{"zm"}.}
+\item{country}{A character vector specifying the country or countries from which to get the forecast data. Options are defined in \code{get_bucket_name()}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to get the forecast data.}
 }

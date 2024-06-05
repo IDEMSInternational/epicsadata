@@ -2,7 +2,7 @@
 #'
 #' This function retrieves and processes station metadata for the specified country and format. The station metadata includes information about station IDs and their associated definitions.
 #'
-#' @param country A character vector specifying the country code for which station metadata should be retrieved and processed.
+#' @param country A character vector specifying the country code for which station metadata should be retrieved and processed. Options are defined in `get_bucket_name()` (e.g., `"zm"`, `"mw"`).
 #' @param station_id A character vector specifying the station ID(s) for the given country.
 #' @param format A character vector indicating the desired format of the processed data. It can be "wide", "long", "nested", or "list".
 #'
@@ -19,7 +19,7 @@
 #'
 #' # Retrieve and process station metadata for country "zm" in nested format
 #' #station_metadata_definitions(country = "zm", format = "nested")
-station_metadata_definitions <- function(country = c("zm", "mw"), station_id, format = c("wide", "long", "nested", "list")){
+station_metadata_definitions <- function(country, station_id, format = c("wide", "long", "nested", "list")){
   format <- match.arg(format)
   station_data <- station_metadata(country = "zm", station_id = station_id)
   
