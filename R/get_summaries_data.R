@@ -1,6 +1,6 @@
 #' Get Summaries Data
 #'
-#' @param country A character vector specifying the country or countries from which to get the data. Options are `"mz"` and `"zm"`.
+#' @param country A character vector specifying the country or countries from which to get the data. Options are defined in `get_bucket_name()` (e.g., `"zm"`, `"mw"`).
 #' @param station_id A character string specifying the ID of the station for which to get the summary data.
 #' @param summary A character string specifying the summary to retrieve.
 #'
@@ -9,7 +9,7 @@
 #'
 #' @examples #
 #' 
-get_summaries_data <- function(country = c("mw", "zm", "zm_test"), station_id, summary) {
+get_summaries_data <- function(country, station_id, summary) {
   if (length(country) > 1) stop("'country' must be of length 1")
   station_id <- as.character(station_id)
   dfs <- vector("list", length(station_id))
