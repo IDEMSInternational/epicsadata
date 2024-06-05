@@ -5,13 +5,13 @@
 \title{Get Processed Station Metadata}
 \usage{
 station_metadata_definitions(
-  country,
+  country = c("zm", "mw"),
   station_id,
   format = c("wide", "long", "nested", "list")
 )
 }
 \arguments{
-\item{country}{A character vector specifying the country code for which station metadata should be retrieved and processed. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country code for which station metadata should be retrieved and processed.}
 
 \item{station_id}{A character vector specifying the station ID(s) for the given country.}
 

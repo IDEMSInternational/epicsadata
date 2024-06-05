@@ -2,7 +2,7 @@
 #' 
 #' @description This function updates the summary data for a specific station in the specified country. It retrieves the data from Google Cloud Storage using the `get_data` function.
 #'
-#' @param country A character vector specifying the country or countries from which to get the data. Options are defined in `get_bucket_name()` (e.g., `"zm"`, `"mw"`).
+#' @param country A character vector specifying the country or countries from which to get the data. Options are `"mz"` and `"zm"`.
 #' @param station_id A character string specifying the ID of the station for which to get the summary data.
 #' @param summary A character string specifying the summary to retrieve.
 #' 
@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples # todo
-update_summaries_data <- function (country, station_id, summary){
+update_summaries_data <- function (country = c("mz", "zm"), station_id, summary){
   filename <- paste0("summaries", "/", summary, "_", station_id, ".rds")
   invisible(get_data(country = country, filename = filename))
 }

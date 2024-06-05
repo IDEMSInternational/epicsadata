@@ -4,10 +4,10 @@
 \alias{update_definitions_data}
 \title{Get the Definitions Data}
 \usage{
-update_definitions_data(country, station_id)
+update_definitions_data(country = c("mz", "zm"), station_id)
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to update the data. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country or countries from which to update the data. Options are \code{"mz"} and \code{"zm"}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to update the daily data.}
 }

@@ -20,15 +20,10 @@
 add_definitions_to_bucket <- function(country, station_id, new_definitions, timestamp = NULL){
   bucket <- get_bucket_name(country)
   definitions_dir <- "definitions"
-  
-  # Create a timestamp if there isn't one already
   if (is.null(timestamp)) {
     timestamp <- format(Sys.time(), format = "%Y%m%d%H%M%S")
-    timestamp <- paste0(".", timestamp)
   }
-  
-  # Define the filename with the timestamp 
-  new_filename <- paste0(station_id, timestamp, ".json")
+  new_filename <- paste0(station_id, ".", timestamp, ".json")
   
   object_function <- function(input, output) {
     jsonlite::write_json(input, path = output, auto_unbox = TRUE, pretty = TRUE)

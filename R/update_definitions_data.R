@@ -2,7 +2,7 @@
 #' 
 #' @description This function updates the definitions data for a specific station in the specified country. It retrieves the data from Google Cloud Storage using the `get_data` function.
 #'
-#' @param country A character vector specifying the country or countries from which to update the data. Options are defined in `get_bucket_name()` (e.g., `"zm"`, `"mw"`).
+#' @param country A character vector specifying the country or countries from which to update the data. Options are `"mz"` and `"zm"`.
 #' @param station_id A character string specifying the ID of the station for which to update the daily data.
 #' 
 #' @details 
@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples # todo
-update_definitions_data <- function(country, station_id) {
+update_definitions_data <- function(country = c("mz", "zm"), station_id) {
   filename <- paste0("definitions", "/", station_id, ".json")
   invisible(get_data(country = country, filename = filename))
 }

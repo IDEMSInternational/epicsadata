@@ -4,10 +4,10 @@
 \alias{update_metadata}
 \title{Update Station Metadata}
 \usage{
-update_metadata(country)
+update_metadata(country = c("mw", "zm"))
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to update the metadata. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country or countries from which to update the metadata. Options are \code{"mz"} and \code{"zm"}.}
 }
 \value{
 This function updates the metadata for the specified station in the specified country.

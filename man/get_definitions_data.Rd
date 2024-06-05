@@ -4,10 +4,10 @@
 \alias{get_definitions_data}
 \title{Get Daily Definitions Data}
 \usage{
-get_definitions_data(country, station_id, file = NULL)
+get_definitions_data(country = c("mw", "zm"), station_id, file = NULL)
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to get the definitions data. Options are any defined in \code{get_bucket_name()}. Common options are \code{"mz"} and \code{"zm"}.}
+\item{country}{A character vector specifying the country or countries from which to get the definitions data. Options are \code{"mz"} and \code{"zm"}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to get the definitions data.}
 

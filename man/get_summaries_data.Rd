@@ -4,10 +4,10 @@
 \alias{get_summaries_data}
 \title{Get Summaries Data}
 \usage{
-get_summaries_data(country, station_id, summary)
+get_summaries_data(country = c("mw", "zm", "zm_test"), station_id, summary)
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to get the data. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country or countries from which to get the data. Options are \code{"mz"} and \code{"zm"}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to get the summary data.}
 

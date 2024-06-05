@@ -12,7 +12,7 @@ station_metadata(
 )
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to get the metadata. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country or countries from which to get the metadata. Options include "zm" (Zambia) and "mz" (Mozambique).}
 
 \item{station_id}{A character vector specifying the station IDs to filter by. If provided, only metadata for the specified station IDs will be returned.}
 

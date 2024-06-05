@@ -4,10 +4,10 @@
 \alias{update_daily_data}
 \title{Get the Daily Data}
 \usage{
-update_daily_data(country, station_id)
+update_daily_data(country = c("mz", "zm"), station_id)
 }
 \arguments{
-\item{country}{A character vector specifying the country or countries from which to update the data. Options are defined in \code{get_bucket_name()} (e.g., \code{"zm"}, \code{"mw"}).}
+\item{country}{A character vector specifying the country or countries from which to update the data. Options are \code{"mz"} and \code{"zm"}.}
 
 \item{station_id}{A character string specifying the ID of the station for which to update the daily data.}
 }

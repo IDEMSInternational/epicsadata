@@ -1,13 +1,13 @@
 #' Get Daily Data
 #'
-#' @param country A character vector specifying the country or countries from which to get the data. Common options are `"mz"`, `"zm"`, and `"zm_test"`. Any defined in `get_bucket_name()`.
+#' @param country A character vector specifying the country or countries from which to get the data. Options are `"mz"` and `"zm"`.
 #' @param station_id A character string specifying the ID of the station for which to get the daily data.
 #'
 #' @return A data frame containing the daily data for the specified station and country.
 #' @export
 #'
 #' @examples #
-get_daily_data <- function(country, station_id) {
+get_daily_data <- function(country = c("mw", "zm", "zm_test"), station_id) {
   if (length(country) > 1) stop("'country' must be of length 1")
   station_id <- as.character(station_id)
   dfs <- vector("list", length(station_id))

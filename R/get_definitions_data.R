@@ -2,7 +2,7 @@
 #'
 #' This function retrieves definitions data for weather stations from a Google Cloud Storage (GCS) bucket. It includes timestamp handling to ensure that the most recent definitions file is imported.
 #'
-#' @param country A character vector specifying the country or countries from which to get the definitions data. Options are any defined in `get_bucket_name()`. Common options are `"mz"` and `"zm"`.
+#' @param country A character vector specifying the country or countries from which to get the definitions data. Options are `"mz"` and `"zm"`.
 #' @param station_id A character string specifying the ID of the station for which to get the definitions data.
 #' @param file Default `NULL` meaning that the most recent definitions file will be found and imported. Otherwise specify as a string the file to import. In format: "STATIONNAME.TIMESTAMP" e.g. "1.20240311152831"
 #'
@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples # todo
-get_definitions_data <- function(country, station_id, file = NULL) {
+get_definitions_data <- function(country = c("mw", "zm"), station_id, file = NULL) {
   if (length(country) > 1) stop("'country' must be of length 1")
   station_id <- as.character(station_id)
   dfs <- vector("list", length(station_id))
