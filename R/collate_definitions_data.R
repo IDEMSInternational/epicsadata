@@ -37,6 +37,7 @@ collate_definitions_data <- function(data = "ghana",
   
   definitions_data <- get_r_instat_definitions(data_book$get_calculations(data))
   definitions_year <- get_r_instat_definitions(data_book$get_calculations(data_by_year))
+  definitions_offset <- get_offset_term(data)
   
   # if yes to annual summaries - give the data frame "ghana_by_station_year"
   if ("annual_rainfall" %in% summaries){
@@ -44,6 +45,12 @@ collate_definitions_data <- function(data = "ghana",
                                                            data_by_year = definitions_year,
                                                            data = definitions_data,
                                                            rain_name = rain)
+    if(!is.null(definitions_offset) || definitions_offset != 1){
+      annual_summaries$start_rains$s_start_doy <- definitions_offset
+      annual_summaries$end_rains$s_start_doy <- definitions_offset
+      annual_summaries$end_season$s_start_doy <- definitions_offset
+      annual_summaries$annual_rain$s_start_doy <- definitions_offset
+    }
   } else {
     annual_summaries <- NULL
   }
@@ -73,7 +80,15 @@ collate_definitions_data <- function(data = "ghana",
                                                              data_by_year_month = definitions_year_month,
                                                              tmin = tmin, tmax = tmax, year = year,
                                                              month = month)
-
+  if((!is.null(definitions_offset) || definitions_offset != 1) & (any(grepl("_temperature", summaries)))){
+    temperature_summaries$min_tmin$s_start_doy <- definitions_offset
+    temperature_summaries$max_tmin$s_start_doy <- definitions_offset
+    temperature_summaries$min_tmax$s_start_doy <- definitions_offset
+    temperature_summaries$max_tmax$s_start_doy <- definitions_offset
+    temperature_summaries$mean_tmin$s_start_doy <- definitions_offset
+    temperature_summaries$mean_tmax$s_start_doy <- definitions_offset
+  }
+  
   # if yes to crop success then ...
   if ("crop_success" %in% summaries){
     if (!is.null(crop_data)){
