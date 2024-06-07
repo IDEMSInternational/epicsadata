@@ -65,11 +65,21 @@ get_start_rains_definitions <- function(start_rains = NULL){
                                            paste0("n=", period_interval, " - "))
     }
   }
-  # Loop through variables and add to the list if defined
+  # Loop through each variable in the list
   for (variable in variables_list) {
+    # Check if the variable exists and is not NA
     if (exists(variable) && !is.na(get(variable))) {
-      data_list[["start_rains"]][[variable]] <- get(variable)
+      # Retrieve the variable's value
+      variable_value <- get(variable)
+      
+      # Check if the variable's class includes "instat_calculation"
+      if ("instat_calculation" %in% class(variable_value)) {
+        data_list[["start_rains"]][[variable]] <- NA
+      } else {
+        data_list[["start_rains"]][[variable]] <- variable_value
+      }
     } else {
+      # Assign NA if the variable does not exist or is NA
       data_list[["start_rains"]][[variable]] <- NA
     }
   }
