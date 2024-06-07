@@ -19,7 +19,9 @@ build_annual_summaries_definitions <- function(data_name, data_by_year, data,
   end_rains <- get_end_rains_definitions(data_by_year$end_rains)
   end_season <- get_end_season_definitions(data_by_year$end_season)
   seasonal_length <- get_season_length_definitions(data_by_year$seasonal_length)
-  
+
+  if (!is.null(data_by_year$start_rain_status)) start_of_rains$start_rains$include_status <- TRUE
+
   # for annual rainfall / rainy days in year:
   total_rain_counts <- get_total_rain_counts(data_name, data_by_year, rain_name)
     
