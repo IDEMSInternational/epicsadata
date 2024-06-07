@@ -37,10 +37,6 @@ get_temperature_summary_definitions(
 \item{mean_tmax_column}{The name of the mean of maximum temperature column in the data.}
 
 \item{max_tmax_column}{The name of the maximum of maximum temperature column in the data.}
-
-\item{tmin}{Character vector specifying the minimum temperature.}
-
-\item{tmax}{Character vector specifying the maximum temperature.}
 }
 \value{
 A list containing temperature summary definitions.

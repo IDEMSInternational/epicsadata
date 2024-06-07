@@ -2,8 +2,6 @@
 #'
 #' Retrieves temperature summary definitions based on provided parameters.
 #'
-#' @param tmin Character vector specifying the minimum temperature.
-#' @param tmax Character vector specifying the maximum temperature.
 #' @param year Character vector specifying the year.
 #' @param month Character vector specifying the month.
 #' @param data_by_year A list of temperature summaries by definition (e.g., year).
