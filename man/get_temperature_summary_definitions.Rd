@@ -5,19 +5,19 @@
 \title{Get temperature summary definitions}
 \usage{
 get_temperature_summary_definitions(
-  tmin = data_book$get_climatic_column_name(data_name, "temp_min"),
-  tmax = data_book$get_climatic_column_name(data_name, "temp_max"),
   year = data_book$get_climatic_column_name(data_name, "year"),
   month = data_book$get_climatic_column_name(data_name, "month"),
   data_by_year,
-  data_by_year_month = NULL
+  data_by_year_month = NULL,
+  min_tmin_column,
+  mean_tmin_column,
+  max_tmin_column,
+  min_tmax_column,
+  mean_tmax_column,
+  max_tmax_column
 )
 }
 \arguments{
-\item{tmin}{Character vector specifying the minimum temperature.}
-
-\item{tmax}{Character vector specifying the maximum temperature.}
-
 \item{year}{Character vector specifying the year.}
 
 \item{month}{Character vector specifying the month.}
@@ -25,6 +25,22 @@ get_temperature_summary_definitions(
 \item{data_by_year}{A list of temperature summaries by definition (e.g., year).}
 
 \item{data_by_year_month}{An optional second list of temperature summaries by definition (e.g., year and month).}
+
+\item{min_tmin_column}{The name of the minimum of minimum temperature column in the data.}
+
+\item{mean_tmin_column}{The name of the mean of minimum temperature column in the data.}
+
+\item{max_tmin_column}{The name of the maximum of minimum temperature column in the data.}
+
+\item{min_tmax_column}{The name of the minimum of maximum temperature column in the data.}
+
+\item{mean_tmax_column}{The name of the mean of maximum temperature column in the data.}
+
+\item{max_tmax_column}{The name of the maximum of maximum temperature column in the data.}
+
+\item{tmin}{Character vector specifying the minimum temperature.}
+
+\item{tmax}{Character vector specifying the maximum temperature.}
 }
 \value{
 A list containing temperature summary definitions.

@@ -9,7 +9,12 @@ build_annual_summaries_definitions(
   data_by_year,
   data,
   rain_name = data_book$get_climatic_column_name(data_name = data_name, col_name =
-    "rain")
+    "rain"),
+  start_rains_column,
+  start_rains_status_column,
+  end_rains_column,
+  end_season_column,
+  seasonal_length_column
 )
 }
 \arguments{
@@ -20,6 +25,16 @@ build_annual_summaries_definitions(
 \item{data}{A list containing data definitions.}
 
 \item{rain_name}{The name of the rainfall column in the data.}
+
+\item{start_rains_column}{The name of the start of rains column in the data}
+
+\item{start_rains_status_column}{The name of the start of rains status column in the data}
+
+\item{end_rains_column}{The name of the end of rains column in the data}
+
+\item{end_season_column}{The name of the end of season column in the data}
+
+\item{seasonal_length_column}{The name of the seasonal length column in the data}
 }
 \value{
 A list of annual summaries definitions.
