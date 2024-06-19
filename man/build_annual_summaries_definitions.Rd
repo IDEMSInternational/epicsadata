@@ -13,7 +13,9 @@ build_annual_summaries_definitions(
   start_rains_column,
   start_rains_status_column,
   end_rains_column,
+  end_rains_status_column,
   end_season_column,
+  end_season_status_column,
   seasonal_length_column
 )
 }
@@ -32,7 +34,11 @@ build_annual_summaries_definitions(
 
 \item{end_rains_column}{The name of the end of rains column in the data}
 
-\item{end_season_column}{The name of the end of season column in the data}
+\item{end_rains_status_column}{The name of the end of rains status column in the data.}
+
+\item{end_season_column}{The name of the end of season column in the data.}
+
+\item{end_season_status_column}{The name of the end of seasons status column in the data.}
 
 \item{seasonal_length_column}{The name of the seasonal length column in the data}
 }
