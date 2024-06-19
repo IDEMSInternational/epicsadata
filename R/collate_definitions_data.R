@@ -17,7 +17,9 @@
 #' @param start_rains_column The name of the start of rains column in the data.
 #' @param start_rains_status_column The name of the start of rains status column in the data.
 #' @param end_rains_column The name of the end of rains column in the data.
+#' @param end_rains_status_column The name of the end of rains status column in the data.
 #' @param end_season_column The name of the end of season column in the data.
+#' @param end_season_status_column The name of the end of seasons status column in the data.
 #' @param seasonal_length_column The name of the seasonal length column in the data.
 #' @param min_tmin_column The name of the minimum of minimum temperature column in the data.
 #' @param max_tmin_column The name of the maximum of minimum temperature column in the data.
@@ -43,7 +45,8 @@ collate_definitions_data <- function(data = "ghana",
                                      month = data_book$get_climatic_column_name("ghana", "month"),
                                      summaries = c("annual_rainfall", "annual_temperature", "monthly_temperature", "extremes", "crop_success", "start_season"),
                                      start_rains_column = "start_rain", start_rains_status_column = "start_rain_status",
-                                     end_rains_column = "end_rains", end_season_column = "end_season", seasonal_length_column = "seasonal_length",
+                                     end_rains_column = "end_rains", end_rains_status_column = "end_rain_status", end_season_column = "end_season", 
+                                     end_season_status_column = "end_season_status", seasonal_length_column = "seasonal_length",
                                      min_tmin_column = "min_tmin", mean_tmin_column = "mean_tmin", max_tmin_column = "max_tmin",
                                      min_tmax_column = "min_tmax", mean_tmax_column = "mean_tmax", max_tmax_column = "max_tmax"){
   
@@ -69,7 +72,9 @@ collate_definitions_data <- function(data = "ghana",
                                                            start_rains_column = start_rains_column,
                                                            start_rains_status_column = start_rains_status_column,
                                                            end_rains_column = end_rains_column,
+                                                           end_rains_status_column = end_rains_status_column,
                                                            end_season_column = end_season_column,
+                                                           end_season_status_column = end_season_status_column,
                                                            seasonal_length_column = seasonal_length_column)
     if(!is.null(definitions_offset) || definitions_offset != 1){
       annual_summaries$start_rains$s_start_doy <- definitions_offset

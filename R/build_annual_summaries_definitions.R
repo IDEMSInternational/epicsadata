@@ -10,7 +10,9 @@
 #' @param start_rains_column The name of the start of rains column in the data
 #' @param start_rains_status_column The name of the start of rains status column in the data
 #' @param end_rains_column The name of the end of rains column in the data
-#' @param end_season_column The name of the end of season column in the data
+#' @param end_rains_status_column The name of the end of rains status column in the data.
+#' @param end_season_column The name of the end of season column in the data.
+#' @param end_season_status_column The name of the end of seasons status column in the data.
 #' @param seasonal_length_column The name of the seasonal length column in the data
 #' @return A list of annual summaries definitions.
 #'
@@ -20,15 +22,18 @@
 build_annual_summaries_definitions <- function(data_name, data_by_year, data,
                                                rain_name = data_book$get_climatic_column_name(data_name = data_name, col_name = "rain"),
                                                start_rains_column, start_rains_status_column,
-                                               end_rains_column, end_season_column, seasonal_length_column){
+                                               end_rains_column, end_rains_status_column, end_season_column,
+                                               end_season_status_column, seasonal_length_column){
   
   start_of_rains <- get_start_rains_definitions(data_by_year[[start_rains_column]])
   end_rains <- get_end_rains_definitions(data_by_year[[end_rains_column]])
   end_season <- get_end_season_definitions(data_by_year[[end_season_column]])
   seasonal_length <- get_season_length_definitions(data_by_year[[seasonal_length_column]])
 
-  if (!is.null(data_by_year$start_rain_status)) start_of_rains$start_rains$include_status <- TRUE
-
+  if (!is.null(data_by_year[[start_rains_status_column]])) start_of_rains$start_rains$include_status <- TRUE
+  if (!is.null(data_by_year[[end_rains_status_column]])) end_rains$end_rains$include_status <- TRUE
+  if (!is.null(data_by_year[[end_season_status_column]])) end_season$end_season$include_status <- TRUE
+  
   # for annual rainfall / rainy days in year:
   total_rain_counts <- get_total_rain_counts(data_name, data_by_year, rain_name)
     
