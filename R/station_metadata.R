@@ -60,7 +60,11 @@ station_metadata <- function(country = NULL, station_id = NULL, include_definiti
       dplyr::filter(station_id %in% station_id_vars)
   }
   
-  if (!include_definitions_id) return(station_data %>% dplyr::select(c("station_id", "station_name", "latitude", "longitude", "elevation", "district", "country_code")))
+  if (!include_definitions_id){
+    vars_to_return <- c("station_id", "station_name", "latitude", "longitude", "elevation", "district", "country_code")
+    vars_to_return <- vars_to_return[vars_to_return %in% names(station_data)]
+    station_data <- station_data %>% dplyr::select(all_of(vars_to_return))
+  }
   if (!include_definitions) return(station_data)
   
   # if include definitions then run the following -
