@@ -21,17 +21,17 @@
 #' #station_metadata_definitions(country = "zm", format = "nested")
 station_metadata_definitions <- function(country, station_id, format = c("wide", "long", "nested", "list")){
   format <- match.arg(format)
-  station_data <- station_metadata(country = "zm", station_id = station_id)
+  station_data <- station_metadata(country = country, station_id = station_id)
   
   if (format == "list"){
     result_list <- purrr::map(.x = station_data$station_id,
                               .f = ~ c(station_data %>% filter(station_id == .x),
-                                       list(data = get_definitions_data(country = "zm", .x))))
+                                       list(data = get_definitions_data(country = country, .x))))
     names(result_list) <- station_data$station_id
     return(result_list)
   } else {
     definitions_data <- purrr::map(.x = station_data$station_id,
-                                   .f = ~ data.frame(station_id = .x, t(unlist(get_definitions_data(country = "zm", .x)))))
+                                   .f = ~ data.frame(station_id = .x, t(unlist(get_definitions_data(country = country, .x)))))
     definitions_data <- dplyr::bind_rows(definitions_data)
     
     wide_df <- dplyr::full_join(station_data, definitions_data)
