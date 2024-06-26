@@ -4,7 +4,10 @@
 \alias{get_bucket_name}
 \title{Get Bucket Name}
 \usage{
-get_bucket_name(country = c("mw", "zm", "zm_test", "ml_test", "ke_test"))
+get_bucket_name(
+  country = c("mw", "zm", "zm_test", "ml_test", "ke_test", "internal_tests",
+    "zm_workshops", "mw_workshops")
+)
 }
 \arguments{
 \item{country}{A character vector specifying the country or countries from which to update the data. Options are \code{"mz"}, \code{"zm"}, \code{"zm_test"}, \code{"ml_test"}, \code{"ke_test"}.}
