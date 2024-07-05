@@ -32,12 +32,12 @@ get_start_rains_definitions <- function(start_rains = NULL){
     } else {
       total_rainfall <- TRUE
       if (is.null(start_rains$filter$wet_spell)){
-        over_days <- extract_value(start_rains$filter[[1]], "roll_sum_rain > ")
-        amount_rain <- extract_value(start_rains$filter$roll_sum_rain[[2]], "n=")
+        amount_rain <- extract_value(start_rains$filter[[1]], "roll_sum_rain > ")
+        over_days <- extract_value(start_rains$filter$roll_sum_rain[[2]], "n=")
         proportion <- FALSE
       } else {
-        over_days <- extract_value(start_rains$filter$wet_spell$roll_sum_rain[[2]], "n=")
         prob_rain_day <- extract_value(start_rains$filter$wet_spell[[1]], "probs=")
+        over_days <- extract_value(start_rains$filter$wet_spell$roll_sum_rain[[2]], "n=")
         proportion <- TRUE
       }
     }
