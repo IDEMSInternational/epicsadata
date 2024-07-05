@@ -24,14 +24,18 @@ station_metadata_definitions <- function(country, station_id, format = c("wide",
   station_data <- station_metadata(country = country, station_id = station_id)
   
   if (format == "list"){
-    result_list <- purrr::map(.x = station_data$station_id,
-                              .f = ~ c(station_data %>% filter(station_id == .x),
-                                       list(data = get_definitions_data(country = country, .x))))
+    definitions_id <- lapply(station_data$definitions_id, function(x) x[length(x)])
+    result_list <- purrr::map2(.x = station_data$station_id,
+                               .y = unlist(definitions_id),
+                               .f = ~ c(station_data %>% filter(station_id == .x),
+                                       list(data = get_definitions_data(country = country, .x, .y))))
     names(result_list) <- station_data$station_id
     return(result_list)
   } else {
-    definitions_data <- purrr::map(.x = station_data$station_id,
-                                   .f = ~ data.frame(station_id = .x, t(unlist(get_definitions_data(country = country, .x)))))
+    definitions_id <- lapply(station_data$definitions_id, function(x) x[length(x)])
+    definitions_data <- purrr::map2(.x = station_data$station_id,
+                                   .y = unlist(definitions_id),
+                                   .f = ~ data.frame(station_id = .x, t(unlist(get_definitions_data(country = country, .x, .y)))))
     definitions_data <- dplyr::bind_rows(definitions_data)
     
     wide_df <- dplyr::full_join(station_data, definitions_data)
