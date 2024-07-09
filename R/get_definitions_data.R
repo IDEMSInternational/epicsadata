@@ -33,7 +33,8 @@ get_definitions_data <- function(country, station_id, definitions_id = NULL, fil
   #     dfs[[i]] <- f #jsonlite::write_json(f)
   #   }
   # }
-  if (is.null(definitions_id)) station_data <- station_metadata(country = country, station_id = station_id)
+  # TODO: set this only if (is.null(definitions_id)), otherwise have that we call in station_data
+  station_data <- station_metadata(country = country, station_id = station_id)
   definitions_id_list <- lapply(station_data$definitions_id, function(x) x[length(x)])
   names(definitions_id_list) <- station_id
   
